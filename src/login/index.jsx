@@ -32,8 +32,35 @@ $code[0].addEventListener('input', function() {
 });
 $send.on('click', function() {
   if(!$send.hasClass('dis')) {
+    $send.addClass('dis');
     $valid.removeClass('dis');
     $code[0].readOnly = false;
+    // 验证码请求
+    // $.get('getCode', function(e) {
+    //   console.log(e);
+    // });
+    sendDelay = 3;
+    $send.text(sendDelay + '秒后刷新');
+    let interval = setInterval(function() {
+      sendDelay--;
+      if(sendDelay === 0) {
+        $send.text('重新发送');
+        clearInterval(interval);
+        check();
+      }
+      else {
+        $send.text(sendDelay + '秒后刷新');
+      }
+    }, 1000);
+  }
+});
+$ok.on('click', function() {
+  if(!$ok.hasClass('dis')) {
+    $ok.addClass('dis');
+    // 注册请求
+    // $.get('reg', function(e) {
+    //   console.log(e);
+    // });
   }
 });
 

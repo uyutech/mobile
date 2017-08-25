@@ -5,4 +5,12 @@
 import './res.html';
 import './index.less';
 
+let $pyq = $('#pyq');
+let $share = $('#share');
 
+$share.on('click', function() {
+  $pyq.removeClass('fn-hide');
+});
+$pyq.on('click', function() {
+  $pyq.addClass('fn-hide');
+});
