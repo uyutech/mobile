@@ -3,9 +3,11 @@
  * For my goddess.
  */
 
-// import 'migi-es6-shim';
-// import 'migi';
+import 'migi-es6-shim';
+import 'migi';
 import $ from 'anima-yocto-ajax';
+import util from './util';
+
 import './index.less';
 
 if(/iP(hone|od|ad)/.test(navigator.userAgent)) {
@@ -30,3 +32,4 @@ window.requestAnimationFrame = function() {
 // console.log('cookie: ' + document.cookie);
 
 window.$ = $;
+window.util = util;

@@ -5,9 +5,6 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     common: './src/common/index.js',
-    index: './src/index/index.jsx',
-    login: './src/login/index.jsx',
-    res: './src/res/index.jsx'
   },
   output: {
     path: __dirname + '/www',
@@ -45,7 +42,7 @@ module.exports = {
       },
       {
         test: /(\.jpg)|(\.jpeg)|(\.gif)|(\.png)$/,
-        use: 'file-loader?name=[path][name].[ext]'
+        use: 'url-loader?limit=10240&name=[path][name].[ext]'
       },
       {
         test: /\.(html?)|(\.mp4)$/,

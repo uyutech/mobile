@@ -19,7 +19,8 @@
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
     "less-loader": "^3.0.0",
-    "migi-loader": "~3.6.0",
+    "migi-loader": "~3.8.0",
+    "url-loader": "^0.5.9",
     "webpack": "^2.2.1",
     "webpack-dev-server": "2.4.2"
   },
