@@ -1,5 +1,5 @@
 /**
- * Created by army on 2017/6/2.
+ * Created by army8735 on 2017/9/15.
  */
 
 import $ from 'anima-yocto-ajax';
@@ -8,8 +8,8 @@ export default {
   ajax: function(url, data, success, error, type) {
     // 兼容无host
     if (!/^http(s)?:\/\//.test(url)) {
-      // url = 'http://192.168.0.3/' + url.replace(/^\//, '');
-      url = '/' + url.replace(/^\//, '');
+      url = 'http://192.168.0.3/' + url.replace(/^\//, '');
+      // url = '/' + url.replace(/^\//, '');
     }
     // console.log('ajax: ' + url + ', ' + JSON.stringify(data));
     function load() {
@@ -27,10 +27,10 @@ export default {
         },
         success: function (data, state, xhr) {
           // console.log('ajax success: ' + url + ', ' + JSON.stringify(data));
-          if(!data.success && data.code === 1000) {
-            location.href = window.LOGIN_URL;
-            return;
-          }
+          // if(!data.success && data.code === 1000) {
+          //   migi.eventBus.emit('NEED_LOGIN');
+          //   return;
+          // }
           success(data, state, xhr);
         },
         error: function (data) {
