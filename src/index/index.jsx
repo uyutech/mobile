@@ -14,7 +14,7 @@ let followCard, zhuanquanCard, findCard, myCard;
 
 let bottomNav = migi.render(
   <BottomNav/>,
-  document.body
+  '#page'
 );
 
 bottomNav.on('change', function(i) {
@@ -25,7 +25,7 @@ bottomNav.on('change', function(i) {
       if(!followCard) {
         followCard = migi.render(
           <FollowCard/>,
-          document.body
+          '#page'
         );
       }
       last = followCard;
@@ -34,7 +34,7 @@ bottomNav.on('change', function(i) {
       if(!zhuanquanCard) {
         zhuanquanCard = migi.render(
           <ZhuanquanCard/>,
-          document.body
+          '#page'
         );
       }
       last = zhuanquanCard;
@@ -43,7 +43,7 @@ bottomNav.on('change', function(i) {
       if(!findCard) {
         findCard = migi.render(
           <FindCard/>,
-          document.body
+          '#page'
         );
       }
       last = findCard;
@@ -52,7 +52,7 @@ bottomNav.on('change', function(i) {
       if(!myCard) {
         myCard = migi.render(
           <MyCard/>,
-          document.body
+          '#page'
         );
       }
       last = myCard;

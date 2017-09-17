@@ -1,14 +1,8 @@
 /**
- * Created by army8735 on 2017/9/11.
+ * Created by army8735 on 2017/9/17.
  */
 
-@import './find/find.less';
-
-body{
-  padding-bottom:0.7rem;
-}
-
-.bottom_nav{
+.bot_nav{
   position:fixed;
   left:0;
   bottom:0;
@@ -33,7 +27,7 @@ body{
       text-align:center;
       font-size:0.1rem;
       color:#B1C0C9;
-      background:url(../component/botnav/nav_bg.png) repeat-x;
+      background:url(nav_bg.png) repeat-x;
       background-size:contain;
       .hairlines &{
         border-width:0.5px;
@@ -51,11 +45,11 @@ body{
       }
       &.follow .icon{
         width:0.24rem;
-        background:url(../component/botnav/follow_off.png) no-repeat center;
+        background:url(follow_off.png) no-repeat center;
         background-size:contain;
       }
       &.follow.cur .icon{
-        background:url(../component/botnav/follow_on.png) no-repeat center;
+        background:url(follow_on.png) no-repeat center;
         background-size:contain;
       }
       &.zhuanquan{
@@ -63,12 +57,12 @@ body{
       }
       &.zhuanquan .icon{
         width:0.25rem;
-        background:url(../component/botnav/zhuanquan_off.png) no-repeat center;
+        background:url(zhuanquan_off.png) no-repeat center;
         background-size:contain;
       }
       &.zhuanquan.cur .icon{
         width:0.25rem;
-        background:url(../component/botnav/zhuanquan_on.png) no-repeat center;
+        background:url(zhuanquan_on.png) no-repeat center;
         background-size:contain;
       }
       &.find{
@@ -76,12 +70,12 @@ body{
       }
       &.find .icon{
         width:0.29rem;
-        background:url(../component/botnav/find_off.png) no-repeat center;
+        background:url(find_off.png) no-repeat center;
         background-size:contain;
       }
       &.find.cur .icon{
         width:0.29rem;
-        background:url(../component/botnav/find_on.png) no-repeat center;
+        background:url(find_on.png) no-repeat center;
         background-size:contain;
       }
       &.my{
@@ -90,13 +84,13 @@ body{
       &.my .icon{
         width:0.17rem;
         height:0.22rem;
-        background:url(../component/botnav/my_off.png) no-repeat center;
+        background:url(my_off.png) no-repeat center;
         background-size:contain;
       }
       &.my.cur .icon{
         width:0.17rem;
         height:0.22rem;
-        background:url(../component/botnav/my_on.png) no-repeat center;
+        background:url(my_on.png) no-repeat center;
         background-size:contain;
       }
       span{
@@ -116,7 +110,7 @@ body{
           bottom:0;
           width:100%;
           height:0.6rem;
-          background:url(../component/botnav/nav_circle.png) no-repeat center bottom;
+          background:url(nav_circle.png) no-repeat center bottom;
           background-size:contain;
           content:' ';
         }
@@ -126,7 +120,7 @@ body{
           bottom:0;
           width:0.52rem;
           height:0.65rem;
-          background:url(../component/botnav/icon.png) no-repeat center;
+          background:url(icon.png) no-repeat center;
           background-size:contain;
           transform:translateY(-0.04rem);
         }

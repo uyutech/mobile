@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     common: './src/common/index.js',
     index: './src/index/index.jsx',
+    follow: './src/follow/index.jsx',
     work: './src/work/index.jsx',
   },
   output: {
