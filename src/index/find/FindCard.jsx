@@ -136,7 +136,7 @@ class FindCard extends migi.Component {
     super(...data);
   }
   show() {
-    $(this.element).show();
+    $(this.element).removeClass('fn-hide');
     if(first) {
       first = false;
       this.ref.tags.autoWidth();
@@ -146,10 +146,10 @@ class FindCard extends migi.Component {
     }
   }
   hide() {
-    $(this.element).hide();
+    $(this.element).addClass('fn-hide');
   }
   render() {
-    return <div class="find_card">
+    return <div class="find_card fn-hide">
       <Banner/>
       <Tags ref="tags"/>
       <HotWorks ref="hotWorks" list={ hotWorks }/>

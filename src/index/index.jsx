@@ -2,44 +2,37 @@
  * Created by army8735 on 2017/9/11.
  */
 
-import './index.html';
+import './zhuanquan.html';
+import './follow.html';
+import './find.html';
+import './my.html';
 import './index.less';
 
-import BottomNav from './BottomNav.jsx';
+import BotNav from '../component/botnav/BotNav.jsx';
 import FindCard from './find/FindCard.jsx';
 
-let last;
+let cur = /^\/(\w+)/.exec(location.pathname)[1];
+if(cur === 'index' || cur === '') {
+  cur = 'follow';
+}
 
-let followCard, zhuanquanCard, findCard, myCard;
-
-let bottomNav = migi.render(
-  <BottomNav/>,
+let botNav = migi.render(
+  <BotNav cur={ cur }/>,
   '#page'
 );
 
-bottomNav.on('change', function(i) {
-  last && last.hide();
-  location.hash = i;
-  switch (i) {
-    case '0':
-      if(!followCard) {
-        followCard = migi.render(
-          <FollowCard/>,
-          '#page'
-        );
-      }
-      last = followCard;
-      break;
-    case '1':
-      if(!zhuanquanCard) {
-        zhuanquanCard = migi.render(
-          <ZhuanquanCard/>,
-          '#page'
-        );
-      }
-      last = zhuanquanCard;
-      break;
-    case '2':
+let last;
+let findCard;
+
+function alt(name, title) {
+  if(title) {
+    document.title = title;
+  }
+  if(last) {
+    last.hide();
+  }
+  switch (name) {
+    case 'find':
       if(!findCard) {
         findCard = migi.render(
           <FindCard/>,
@@ -48,17 +41,23 @@ bottomNav.on('change', function(i) {
       }
       last = findCard;
       break;
-    case '3':
-      if(!myCard) {
-        myCard = migi.render(
-          <MyCard/>,
-          '#page'
-        );
-      }
-      last = myCard;
+    default:
+      last = null;
       break;
   }
-  last.show();
+  if(last) {
+    last.show();
+  }
+}
+botNav.on('change', function(name, title) {
+  alt(name, title);
 });
 
-bottomNav.setCurrent(location.hash.replace(/^#/, '') || '2');
+window.addEventListener('popstate', function(e) {
+  let name = e.state.name;
+  let title=  e.state.title;
+  botNav.setCur(name);
+  alt(name, title);
+});
+
+alt(cur);
