@@ -7,6 +7,7 @@ import 'migi-es6-shim';
 import 'migi';
 import $ from 'anima-yocto-ajax';
 import util from './util';
+import './global.jsx';
 
 import './index.less';
 
