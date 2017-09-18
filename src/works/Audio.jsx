@@ -8,12 +8,6 @@ let lyricsIndex = -1;
 let lyricsHeight = [];
 let $lyricsRoll;
 
-let shareId;
-let hash = {
-  '2757': 'http://rhymesland.com/rhymes/rjrjs',
-  '2758': 'http://rhymesland.com/rhymes/jrj'
-};
-
 class Audio extends migi.Component {
   constructor(...data) {
     super(...data);
@@ -45,9 +39,6 @@ class Audio extends migi.Component {
       count += 20;
     });
     return this;
-  }
-  setId(id) {
-    shareId = id;
   }
   show() {
     $(this.element).removeClass('fn-hide');
@@ -192,7 +183,7 @@ class Audio extends migi.Component {
     this.showLyricsMode = !this.showLyricsMode;
   }
   clickShare() {
-    migi.eventBus.emit('share', hash[shareId]);
+    migi.eventBus.emit('share');
   }
   clear() {
     this.duration = 0;

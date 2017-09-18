@@ -12,6 +12,15 @@
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat;
+    &:before{
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:0.3rem;
+      background:linear-gradient(rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%);
+      content:' ';
+    }
     &:after{
       position:absolute;
       left:0;
@@ -82,7 +91,7 @@
         color:@colorBg;
         font-size:0.12rem;
         line-height:0.24rem;
-        background:url(../icon/popular.png) no-repeat 0 center;
+        background:url(popular.png) no-repeat 0 center;
         background-size:contain;
         transition:opacity linear 0.2s;
       }
@@ -119,15 +128,15 @@
             height:0.24rem;
           }
           .like{
-            background:url(../icon/like.png) no-repeat center;
+            background:url(like.png) no-repeat center;
             background-size:contain;
             &.has{
-              background:url(../icon/liked.png) no-repeat center;
+              background:url(liked.png) no-repeat center;
               background-size:contain;
             }
           }
           .download{
-            background:url(../icon/download.png) no-repeat center;
+            background:url(download.png) no-repeat center;
             background-size:contain;
             a{
               display:block;
@@ -135,26 +144,26 @@
             }
           }
           .share{
-            background:url(../icon/share.png) no-repeat center;
+            background:url(share.png) no-repeat center;
             background-size:contain;
           }
           .favor{
-            background:url(../icon/favor.png) no-repeat center;
+            background:url(favor.png) no-repeat center;
             background-size:contain;
             &.has{
-              background:url(../icon/favored.png) no-repeat center;
+              background:url(favored.png) no-repeat center;
               background-size:contain;
             }
           }
           .barrage{
-            background:url(../icon/barrage.png) no-repeat center;
+            background:url(barrage.png) no-repeat center;
             background-size:contain;
           }
           .screen{
-            background:url(../icon/fullscreen.png) no-repeat center;
+            background:url(fullscreen.png) no-repeat center;
             background-size:contain;
             &.has{
-              background:url(../icon/smallscreen.png) no-repeat center;
+              background:url(smallscreen.png) no-repeat center;
               background-size:contain;
             }
           }
@@ -218,11 +227,11 @@
             display:block;
             width:0.24rem;
             height:0.24rem;
-            background:url(../icon/lyrics.png) no-repeat center;
+            background:url(lyrics.png) no-repeat center;
             background-size:contain;
             text-shadow:0 0 1px #000;
             &.alt{
-              background-image:url(../icon/lyrics_roll.png);
+              background-image:url(lyrics_roll.png);
             }
           }
         }
@@ -282,7 +291,7 @@
       .prev{
         width:0.48rem;
         height:0.48rem;
-        background:url(../icon/prev.png) no-repeat center;
+        background:url(prev.png) no-repeat center;
         background-size:contain;
         &.dis{
           //opacity:0.3;
@@ -291,16 +300,16 @@
       .play{
         width:0.48rem;
         height:0.48rem;
-        background:url(../icon/play.png) no-repeat center;
+        background:url(play.png) no-repeat center;
         background-size:contain;
         &.pause{
-          background-image:url(../icon/pause.png);
+          background-image:url(pause.png);
         }
       }
       .next{
         width:0.48rem;
         height:0.48rem;
-        background:url(../icon/next.png) no-repeat center;
+        background:url(next.png) no-repeat center;
         background-size:contain;
         &.dis{
           //opacity:0.3;
@@ -379,6 +388,78 @@
         height:0.1rem;
         background:@colorM;
         content:' ';
+      }
+    }
+  }
+  > .form{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:0.48rem;
+    z-index:1000;
+    .c{
+      display:flex;
+      margin:0 auto;
+      padding:0 0.1rem;
+      box-sizing:border-box;
+      height:100%;
+      background:@colorBg;
+      border-bottom:none;
+      align-items:center;
+      .reply{
+        position:relative;
+        margin-right:0.1rem;
+        padding-top:0.05rem;
+        font-size:0.1rem;
+        &:after{
+          position:absolute;
+          top:-0.05rem;
+          right:-0.05rem;
+          display:block;
+          width:0.16rem;
+          height:0.16rem;
+          background:url(../component/comment/del.png) no-repeat;
+          background-size:contain;
+          content:' ';
+          opacity:0.5;
+        }
+      }
+      .inputs{
+        flex:1;
+        padding:0 0.1rem;
+        background:@colorM;
+        height:0.28rem;
+        border:1px solid #EEE;
+        border-radius:0.1rem;
+        input{
+          display:block;
+          width:100%;
+          height:100%;
+          font-size:0.14rem;
+          background:transparent;
+          border:none;
+          color:@colorTxt;
+          &::placeholder{
+            color:@colorBg;
+            font-size:0.12rem;
+          }
+        }
+      }
+      button{
+        margin:0 0 0 0.1rem;
+        padding:0;
+        width:0.4rem;
+        height:0.28rem;
+        font-size:0.14rem;
+        background:transparent;
+        border:1px solid @colorM;
+        border-radius:0.1rem;
+        color:@colorTxt;
+        white-space:nowrap;
+        &.dis{
+          opacity:0.3;
+        }
       }
     }
   }
