@@ -1,0 +1,385 @@
+/**
+ * Created by army8735 on 2017/9/11.
+ */
+
+@import '../common/var.less';
+
+.works{
+  > .media{
+    position:relative;
+    padding-top:0.05rem;
+    background:@colorBg;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    &:after{
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:100%;
+      height:1.8rem;
+      background:linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.7) 100%);
+      content:' ';
+    }
+    .author{
+      position:relative;
+      overflow-x:auto;
+      z-index:10;
+      .c{
+        width:9999rem;
+        height:0.24rem;
+        overflow:hidden;
+        ul{
+          display:inline-block;
+          color:@colorM;
+          height:0.24rem;
+          overflow:hidden;
+          li{
+            display:inline-flex;
+            height:0.24rem;
+            vertical-align:top;
+            align-items:center;
+            &.label{
+              margin:0 0.05rem;
+              padding:0 0.05rem;
+              border:1px solid @colorM;
+              font-size:0.1rem;
+              box-sizing:border-box;
+              border-radius:0.24rem;
+            }
+            &.item{
+              padding-right:0.05rem;
+              color:@colorM;
+              font-size:0.12rem;
+              white-space:nowrap;
+              overflow:hidden;
+              text-overflow:ellipsis;
+              max-width:0.85rem;
+            }
+          }
+        }
+      }
+    }
+    > .c{
+      position:relative;
+      height:2.1rem;
+      z-index:10;
+      //overflow:hidden;
+      &.hide-control{
+        .popular{
+          opacity:0;
+        }
+        .audio .control{
+          opacity:0;
+        }
+      }
+      .popular{
+        position:absolute;
+        top:0.05rem;
+        right:0.1rem;
+        z-index:10;
+        padding-left:0.24rem;
+        color:@colorBg;
+        font-size:0.12rem;
+        line-height:0.24rem;
+        background:url(../icon/popular.png) no-repeat 0 center;
+        background-size:contain;
+        transition:opacity linear 0.2s;
+      }
+      .audio,.video{
+        position:relative;
+        width:100%;
+        height:100%;
+        audio,video{
+          display:block;
+          width:100%;
+          height:100%;
+        }
+        .poster{
+          position:absolute;
+          left:0;
+          top:0;
+          width:100%;
+          height:100%;
+          background-size:cover;
+          background-position:center;
+          background-repeat:no-repeat;
+        }
+        .btn{
+          position:absolute;
+          left:0;
+          bottom:0;
+          padding:0 0 0.1rem 0;
+          width:100%;
+          display:flex;
+          align-items:center;
+          justify-content:space-around;
+          li{
+            width:0.24rem;
+            height:0.24rem;
+          }
+          .like{
+            background:url(../icon/like.png) no-repeat center;
+            background-size:contain;
+            &.has{
+              background:url(../icon/liked.png) no-repeat center;
+              background-size:contain;
+            }
+          }
+          .download{
+            background:url(../icon/download.png) no-repeat center;
+            background-size:contain;
+            a{
+              display:block;
+              height:100%;
+            }
+          }
+          .share{
+            background:url(../icon/share.png) no-repeat center;
+            background-size:contain;
+          }
+          .favor{
+            background:url(../icon/favor.png) no-repeat center;
+            background-size:contain;
+            &.has{
+              background:url(../icon/favored.png) no-repeat center;
+              background-size:contain;
+            }
+          }
+          .barrage{
+            background:url(../icon/barrage.png) no-repeat center;
+            background-size:contain;
+          }
+          .screen{
+            background:url(../icon/fullscreen.png) no-repeat center;
+            background-size:contain;
+            &.has{
+              background:url(../icon/smallscreen.png) no-repeat center;
+              background-size:contain;
+            }
+          }
+        }
+        .lyrics-con{
+          position:absolute;
+          left:0;
+          top:0.3rem;
+          bottom:0.4rem;
+          width:100%;
+          overflow:hidden;
+          text-shadow:0 0 2px #000;
+          color:@colorBg;
+          .lyrics-roll{
+            position:absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            width:100%;
+            height:100%;
+            transform:translateY(-0.1rem);
+            .c{
+              position:relative;
+              top:50%;
+              transition:transform 0.2s ease-out;
+              pre{
+                margin:0;
+                font-size:0.12rem;
+                line-height:0.2rem;
+                text-align:center;
+                word-break:break-all;
+                word-wrap:break-word;
+                white-space:pre-wrap;
+                opacity:0.3;
+                transition:opacity 0.2s ease-out;
+                &.cur{
+                  opacity:1;
+                }
+              }
+            }
+          }
+          .lyrics-line{
+            position:absolute;
+            left:0;
+            width:100%;
+            bottom:0;
+            margin:0;
+            font-size:0.12rem;
+            line-height:2;
+            color:#fff;
+            text-align:center;
+            word-break:break-all;
+            word-wrap:break-word;
+            white-space:pre-wrap;
+            text-shadow:0 0 1px #000;
+          }
+          .lyrics{
+            position:absolute;
+            right:0.2rem;
+            bottom:0;
+            display:block;
+            width:0.24rem;
+            height:0.24rem;
+            background:url(../icon/lyrics.png) no-repeat center;
+            background-size:contain;
+            text-shadow:0 0 1px #000;
+            &.alt{
+              background-image:url(../icon/lyrics_roll.png);
+            }
+          }
+        }
+      }
+    }
+    .progress{
+      position:relative;
+      margin-bottom:0.1rem;
+      width:100%;
+      height:0.05rem;
+      background:rgba(255,255,255,0.6);
+      z-index:10;
+      &.dis{
+        opacity:0.3;
+      }
+      .has{
+        position:absolute;
+        left:0;
+        top:0;
+        width:0;
+        height:100%;
+        background:@colorM;
+      }
+      .pbg{
+        position:absolute;
+        left:0.07rem;
+        right:0.07rem;
+        top:0;
+        height:100%;
+        .point{
+          position:absolute;
+          left:0;
+          top:50%;
+          &:before{
+            position:absolute;
+            top:-0.07rem;
+            left:-0.07rem;
+            width:0.14rem;
+            height:0.14rem;
+            border-radius:100%;
+            background:@colorBg;
+            content:' ';
+          }
+        }
+      }
+    }
+    .bar{
+      position:relative;
+      display:flex;
+      margin:0 20%;
+      align-items:center;
+      justify-content:space-around;
+      z-index:10;
+      &.dis{
+        opacity:0.3;
+      }
+      .prev{
+        width:0.48rem;
+        height:0.48rem;
+        background:url(../icon/prev.png) no-repeat center;
+        background-size:contain;
+        &.dis{
+          //opacity:0.3;
+        }
+      }
+      .play{
+        width:0.48rem;
+        height:0.48rem;
+        background:url(../icon/play.png) no-repeat center;
+        background-size:contain;
+        &.pause{
+          background-image:url(../icon/pause.png);
+        }
+      }
+      .next{
+        width:0.48rem;
+        height:0.48rem;
+        background:url(../icon/next.png) no-repeat center;
+        background-size:contain;
+        &.dis{
+          //opacity:0.3;
+        }
+      }
+    }
+    .type{
+      position:relative;
+      margin:0.05rem 0 0.1rem;
+      z-index:10;
+      color:@colorBg;
+      height:0.24rem;
+      li{
+        display:inline-flex;
+        margin:0 0.05rem;
+        padding:0 0.05rem;
+        border:1px solid @colorM;
+        color:@colorM;
+        font-size:0.12rem;
+        box-sizing:border-box;
+        border-radius:0.24rem;
+        cursor:pointer;
+        &.cur{
+          border-color:@colorM;
+          color:@colorHl;
+          background:@colorM;
+          cursor:default;
+        }
+      }
+    }
+    .tags{
+      position:relative;
+      z-index:10;
+      overflow:hidden;
+      ul{
+        padding-left:0.1rem;
+        li{
+          position:relative;
+          margin-right:0.05rem;
+          padding:0 0.1rem;
+          display:inline-block;
+          height:0.3rem;
+          line-height:0.3rem;
+          &:before{
+            position:absolute;
+            left:0;
+            top:0.25rem;
+            width:100%;
+            height:101%;
+            border-top-left-radius:0.18rem;
+            border-top-right-radius:0.18rem;
+            background:@colorM;
+            content:' ';
+            transition:transform 0.2s;
+          }
+          span{
+            position:relative;
+            color:@colorM;
+            z-index:2;
+            font-size:0.14rem;
+          }
+          &.cur{
+            &:before{
+              transform:translate3d(0, -0.25rem, 0);
+            }
+            span{
+              color:@colorHl;
+            }
+          }
+        }
+      }
+      &:after{
+        position:relative;
+        display:block;
+        width:100%;
+        height:0.1rem;
+        background:@colorM;
+        content:' ';
+      }
+    }
+  }
+}

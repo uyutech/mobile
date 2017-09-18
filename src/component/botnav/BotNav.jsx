@@ -2,6 +2,11 @@
  * Created by army8735 on 2017/9/17.
  */
 
+let hasOnLoad;
+window.addEventListener('load', function() {
+  hasOnLoad = true;
+});
+
 class BotNav extends migi.Component {
   constructor(...data) {
     super(...data);

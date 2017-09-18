@@ -54,10 +54,11 @@ botNav.on('change', function(name, title) {
 });
 
 window.addEventListener('popstate', function(e) {
-  let name = e.state.name;
-  let title=  e.state.title;
+  let state = e.state || {};
+  let name = state.name;
+  let title=  state.title;
   botNav.setCur(name);
-  alt(name, title);
+  alt(name || 'follow', title);
 });
 
 alt(cur);
