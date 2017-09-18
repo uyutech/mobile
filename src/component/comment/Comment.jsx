@@ -224,7 +224,7 @@ class Comment extends migi.Component {
     return <li id={ 'comment_' + item.Send_ID }>
       <div class="t">
         <div class="profile fn-clear">
-          <img class="pic" src={ item.Send_UserHeadUrl || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png' }/>
+          <img class="pic" src={ item.Send_UserHeadUrl || '//zhuanquan.xyz/img/blank.png' }/>
           <div class="txt">
             <div>
               <span class="name">{ item.Send_UserName }</span>
@@ -257,7 +257,7 @@ class Comment extends migi.Component {
     return <li>
       <div class="t fn-clear">
         <div class="profile fn-clear" cid={ item.Send_ID } rid={ item.RootID } name={ item.Send_UserName }>
-          <img class="pic" src={ item.Send_UserHeadUrl || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png' }/>
+          <img class="pic" src={ item.Send_UserHeadUrl || '//zhuanquan.xyz/img/blank.png' }/>
           <div class="txt">
             <div><span class="name2 fn-hide">{ item.Send_ToUserName }</span><b class="arrow fn-hide"/><small class="time">{ formatTime(item.Send_Time) }</small><span class="name">{ item.Send_UserName }</span></div>
             <p>{ item.sign }</p>

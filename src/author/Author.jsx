@@ -3,6 +3,7 @@
  */
 
 import Nav from './Nav.jsx';
+import Home from './Home.jsx';
 
 class Author extends migi.Component {
   constructor(...data) {
@@ -39,10 +40,28 @@ class Author extends migi.Component {
     }, function(res) {
       alert(res.message || util.ERROR_MESSAGE);
     });
+    let home = self.ref.home;
+    let hotWork = home.ref.hotWork;
+    let hotAuthor = home.ref.hotAuthor;
+    util.postJSON('author/GetAuthorHomePage', { AuthorID: authorId }, function (res) {
+      if(res.success) {
+        let data = res.data;
+        hotWork.dataList = data.Hot_Works_Items;
+        hotWork.autoWidth();
+        hotAuthor.dataList = data.AuthorToAuthor;
+        hotAuthor.autoWidth();
+      }
+      else {
+        alert(res.message || util.ERROR_MESSAGE);
+      }
+    }, function(res) {
+      alert(res.message || util.ERROR_MESSAGE);
+    });
   }
   render() {
     return <div class="author">
       <Nav ref="nav"/>
+      <Home ref="home"/>
     </div>;
   }
 }
