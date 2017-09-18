@@ -3,12 +3,13 @@
  */
 
 @import '../common/var.less';
+@import '../component/comment/comment.less';
 
 .works{
+  padding-bottom:0.6rem;
   > .media{
     position:relative;
-    padding-top:0.05rem;
-    background:@colorBg;
+    background:#F9F9F9;
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat;
@@ -17,7 +18,7 @@
       left:0;
       top:0;
       width:100%;
-      height:0.3rem;
+      height:0.4rem;
       background:linear-gradient(rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%);
       content:' ';
     }
@@ -32,6 +33,7 @@
     }
     .author{
       position:relative;
+      padding:0.05rem 0;
       overflow-x:auto;
       z-index:10;
       .c{
@@ -40,7 +42,7 @@
         overflow:hidden;
         ul{
           display:inline-block;
-          color:@colorM;
+          color:#eee;
           height:0.24rem;
           overflow:hidden;
           li{
@@ -51,14 +53,14 @@
             &.label{
               margin:0 0.05rem;
               padding:0 0.05rem;
-              border:1px solid @colorM;
+              border:1px solid #eee;
               font-size:0.1rem;
               box-sizing:border-box;
               border-radius:0.24rem;
             }
             &.item{
               padding-right:0.05rem;
-              color:@colorM;
+              color:#eee;
               font-size:0.12rem;
               white-space:nowrap;
               overflow:hidden;
@@ -176,7 +178,7 @@
           width:100%;
           overflow:hidden;
           text-shadow:0 0 2px #000;
-          color:@colorBg;
+          color:#eee;
           .lyrics-roll{
             position:absolute;
             left:0;
@@ -253,7 +255,7 @@
         top:0;
         width:0;
         height:100%;
-        background:@colorM;
+        background:@bgLinearGradient;
       }
       .pbg{
         position:absolute;
@@ -272,7 +274,7 @@
             width:0.14rem;
             height:0.14rem;
             border-radius:100%;
-            background:@colorBg;
+            background:#fff;
             content:' ';
           }
         }
@@ -324,18 +326,20 @@
       height:0.24rem;
       li{
         display:inline-flex;
+        align-items:center;
         margin:0 0.05rem;
         padding:0 0.05rem;
-        border:1px solid @colorM;
-        color:@colorM;
+        height:100%;
+        border:1px solid #A4D2DF;
+        color:#A4D2DF;
         font-size:0.12rem;
         box-sizing:border-box;
         border-radius:0.24rem;
         cursor:pointer;
         &.cur{
-          border-color:@colorM;
-          color:@colorHl;
-          background:@colorM;
+          border:none;
+          color:#eee;
+          background:@bgLinearGradient;
           cursor:default;
         }
       }
@@ -361,13 +365,13 @@
             height:101%;
             border-top-left-radius:0.18rem;
             border-top-right-radius:0.18rem;
-            background:@colorM;
+            background:@bgLinearGradient;
             content:' ';
             transition:transform 0.2s;
           }
           span{
             position:relative;
-            color:@colorM;
+            color:#ccc;
             z-index:2;
             font-size:0.14rem;
           }
@@ -376,7 +380,7 @@
               transform:translate3d(0, -0.25rem, 0);
             }
             span{
-              color:@colorHl;
+              color:#fff;
             }
           }
         }
@@ -386,8 +390,94 @@
         display:block;
         width:100%;
         height:0.1rem;
-        background:@colorM;
+        background:@bgLinearGradient;
         content:' ';
+      }
+    }
+  }
+  > .comments{
+    position:relative;
+    padding-top:0.4rem;
+    .type{
+      position:absolute;
+      top:0.1rem;
+      right:0.1rem;
+      background:#DADADA;
+      border-radius:0.18rem;
+      &:before{
+        position:absolute;
+        left:0;
+        top:0;
+        width:0.44rem;
+        height:100%;
+        background:#F0F0F0;
+        border-radius:0.18rem;
+        content:' ';
+        transition:transform 0.2s;
+      }
+      &.alt:before{
+        transform:translate3d(100%, 0, 0);
+      }
+      li{
+        position:relative;
+        float:left;
+        padding:0 0.1rem;
+        width:0.24rem;
+        height:0.24rem;
+        line-height:0.24rem;
+        border-radius:0.18rem;
+        color:#A8A8A8;
+        overflow:hidden;
+        span{
+          display:block;
+          font-size:0.12rem;
+          white-space:nowrap;
+        }
+        &.cur{
+          color:#4C8DAF;
+          cursor:pointer;
+        }
+      }
+    }
+    .type2{
+      position:absolute;
+      top:0.1rem;
+      left:0.1rem;
+      background:#DADADA;
+      border-radius:0.18rem;
+      &:before{
+        position:absolute;
+        left:0;
+        top:0;
+        width:0.44rem;
+        height:100%;
+        background:#F0F0F0;
+        border-radius:0.18rem;
+        content:' ';
+        transition:transform 0.2s;
+      }
+      &.alt:before{
+        transform:translate3d(100%, 0, 0);
+      }
+      li{
+        position:relative;
+        float:left;
+        padding:0 0.1rem;
+        width:0.24rem;
+        height:0.24rem;
+        line-height:0.24rem;
+        border-radius:0.18rem;
+        color:#A8A8A8;
+        overflow:hidden;
+        span{
+          display:block;
+          font-size:0.12rem;
+          white-space:nowrap;
+        }
+        &.cur{
+          color:#4C8DAF;
+          cursor:pointer;
+        }
       }
     }
   }
@@ -398,13 +488,14 @@
     width:100%;
     height:0.48rem;
     z-index:1000;
+    box-shadow:0 0 2px rgba(0,0,0,0.1);
     .c{
       display:flex;
       margin:0 auto;
       padding:0 0.1rem;
       box-sizing:border-box;
       height:100%;
-      background:@colorBg;
+      background:#fff;
       border-bottom:none;
       align-items:center;
       .reply{
@@ -428,7 +519,7 @@
       .inputs{
         flex:1;
         padding:0 0.1rem;
-        background:@colorM;
+        background:#EDF3F7;
         height:0.28rem;
         border:1px solid #EEE;
         border-radius:0.1rem;
@@ -439,9 +530,7 @@
           font-size:0.14rem;
           background:transparent;
           border:none;
-          color:@colorTxt;
           &::placeholder{
-            color:@colorBg;
             font-size:0.12rem;
           }
         }
@@ -453,9 +542,8 @@
         height:0.28rem;
         font-size:0.14rem;
         background:transparent;
-        border:1px solid @colorM;
+        border:1px solid #999;
         border-radius:0.1rem;
-        color:@colorTxt;
         white-space:nowrap;
         &.dis{
           opacity:0.3;

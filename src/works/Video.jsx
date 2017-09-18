@@ -14,6 +14,7 @@ class Video extends migi.Component {
     self.isLike = data[0].ISLike;
     self.isFavor = data[0].ISFavor;
     self.fileUrl = data[0].FileUrl;
+    self.cover = data[0].VideoCoverPic;
     return this;
   }
   show() {
@@ -182,7 +183,7 @@ class Video extends migi.Component {
         your browser does not support the audio tag
       </video>
       <div ref="poster" class="poster"
-        style={ 'background-image:url(' + (this.cover || 'http://rhymesland.oss-cn-shanghai.aliyuncs.com/blank.png') + ')' }
+        style={ 'background-image:url(' + (this.cover || 'http://zhuanquan.xyz/img/blank.png') + ')' }
         onClick={ this.clickPoster }/>
       <ul class="btn" ref="btn">
         <li class={ 'like' + (this.isLike ? ' has' : '') } onClick={ this.clickLike }/>

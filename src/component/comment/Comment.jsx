@@ -99,8 +99,6 @@ class Comment extends migi.Component {
       });
       $root.on('click', '.share', function(e) {
         e.preventDefault();
-        let $btn = $(this);
-        self.emit('copy', location.protocol + '//' + location.host + $btn.attr('href'));
       });
       $root.on('click', '.remove', function() {
         let $btn = $(this);
@@ -146,7 +144,7 @@ class Comment extends migi.Component {
     if($slide.hasClass('on')) {
       $slide.removeClass('on');
       $list2.css('height', 0);
-      self.emit('noSubComment');
+      self.emit('closeSubComment');
       $lastSlide = null;
       if(subLoadHash[rid] === IS_LOADING) {
         subLoadHash[rid] = NOT_LOADED;

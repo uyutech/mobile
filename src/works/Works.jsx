@@ -7,6 +7,7 @@ import Intro from './Intro.jsx';
 import WorkComment from './WorkComment.jsx';
 
 let ajax;
+let firstLoadComment = true;
 let barrageTime = 0;
 
 class Works extends migi.Component {
@@ -15,6 +16,41 @@ class Works extends migi.Component {
     let self = this;
     self.on(migi.Event.DOM, function() {
       self.setId(window.workID);
+      let media = self.ref.media;
+      let intro = self.ref.intro;
+      let workComment = self.ref.workComment;
+      let comment = workComment.ref.comment;
+      media.on('tagChange', function(type) {
+        switch (type) {
+          case '0':
+            workComment.hide();
+            intro.show();
+            break;
+          case '1':
+            intro.hide();
+            workComment.show();
+            if(firstLoadComment) {
+              firstLoadComment = false;
+              workComment.load();
+            }
+            break;
+        }
+      });
+      media.on('switchSubWork', function(data) {
+        self.subWorkID = data[0].ItemID;
+        barrageTime = 0;
+      });
+      media.on('timeupdate', function(data) {
+        barrageTime = data;
+      });
+      comment.on('chooseSubComment', function(rid, cid, name) {
+        self.rootId = rid;
+        self.replayId = cid;
+        self.replayName = name;
+      });
+      comment.on('closeSubComment', function() {
+        self.clickReplay();
+      });
     });
   }
   @bind hasContent
@@ -30,6 +66,7 @@ class Works extends migi.Component {
     let media = self.ref.media;
     let intro = self.ref.intro;
     let workComment = self.ref.workComment;
+    workComment.workID = workID;
     if(ajax) {
       ajax.abort();
     }

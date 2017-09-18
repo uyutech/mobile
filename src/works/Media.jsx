@@ -25,10 +25,8 @@ class Media extends migi.Component {
     let self = this;
     self.on(migi.Event.DOM, function() {
       WIDTH = $(this.element).width();
-      let style = document.createElement('style');
       let width = $(this.element).width();
-      style.innerText = `.main.work>.media>.c{height:${Math.round(width / 16 * 9)}px}`;
-      document.head.appendChild(style);
+      self.ref.c.element.style.height = Math.round(width / 16 * 9) + 'px';
 
       let $play = $(this.ref.play.element);
       audio = self.ref.audio;

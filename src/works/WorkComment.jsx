@@ -10,23 +10,15 @@ let SortType = 0;
 let MyComment = 0;
 let CurrentCount = 0;
 let ajax;
-let loadingMore;
 let loadEnd;
 let $window = $(window);
-let $page = $('#page');
-let $main;
-let $body = $(document.body);
 
 class WorkComment extends migi.Component {
   constructor(...data) {
     super(...data);
     let self = this;
     self.on(migi.Event.DOM, function() {
-      $main = $('.main.work');
       $window.on('scroll', function() {
-        self.checkMore();
-      });
-      $page.on('scroll', function() {
         self.checkMore();
       });
     });
@@ -48,16 +40,15 @@ class WorkComment extends migi.Component {
   @bind replayName
   @bind hasContent
   @bind loading
-  @bind id
+  @bind workID
   load() {
     let self = this;
-    // self.ref.comment.showComment();
     self.ref.comment.message = '读取中...';
     if(ajax) {
       ajax.abort();
     }
     self.loading = true;
-    ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+    ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
         CurrentCount = data.Size;
@@ -90,15 +81,10 @@ class WorkComment extends migi.Component {
     let self = this;
     let WIN_HEIGHT = $window.height();
     let bool;
-    if(window.IS_MOBILE) {
-      bool = $page.scrollTop() + WIN_HEIGHT + 30 > $main.outerHeight();
-    }
-    else {
-      bool = $window.scrollTop() + WIN_HEIGHT + 30 > $page.height();
-    }
-    if(self.showComment && !self.loading && !loadingMore && !loadEnd && bool) {
-      loadingMore = true;
-      ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.id , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+    bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
+    if(self.showComment && !self.loading && !loadEnd && bool) {
+      self.loading = true;
+      ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;
@@ -106,24 +92,22 @@ class WorkComment extends migi.Component {
           if(data.data.length) {
             self.ref.comment.addMore(data.data);
             if(data.data.length < Take) {
-              self.ref.comment.message = '';
+              self.ref.comment.message = '已经到底了';
               loadEnd = true;
             }
           }
           else {
             loadEnd = true;
-            self.ref.comment.message = '';
+            self.ref.comment.message = '已经到底了';
           }
         }
         else {
           self.ref.comment.message = res.message || util.ERROR_MESSAGE;
         }
         self.loading = false;
-        loadingMore = false;
       }, function(res) {
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
         self.loading = false;
-        loadingMore = false;
       });
     }
   }
