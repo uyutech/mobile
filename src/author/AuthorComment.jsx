@@ -17,6 +17,12 @@ let $window = $(window);
 class AuthorComment extends migi.Component {
   constructor(...data) {
     super(...data);
+    let self = this;
+    self.on(migi.Event.DOM, function() {
+      $window.on('scroll', function() {
+        self.checkMore();
+      });
+    });
   }
   @bind showComment
   @bind rootId = null
@@ -36,9 +42,8 @@ class AuthorComment extends migi.Component {
     self.showComment = false;
     Skip = -1;
   }
-  load(authorID) {
+  load() {
     let self = this;
-    self.authorID = authorID;
     self.ref.comment.message = '读取中...';
     if(ajax) {
       ajax.abort();
@@ -47,7 +52,7 @@ class AuthorComment extends migi.Component {
       ajaxMore.abort();
     }
     self.loading = true;
-    ajax = util.postJSON('author/GetToWorkMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
         CurrentCount = data.Size;
@@ -81,7 +86,7 @@ class AuthorComment extends migi.Component {
     bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
     if(self.showComment && !self.loading && !loadEnd && bool) {
       self.loading = true;
-      ajaxMore = util.postJSON('author/GetToWorkMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+      ajaxMore = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;

@@ -25,16 +25,16 @@ class Works extends migi.Component {
       });
     });
   }
+  @bind authorID
   show() {
     $(this.element).removeClass('fn-hide');
   }
   hide() {
     $(this.element).addClass('fn-hide');
   }
-  load(authorID) {
+  load() {
     let self = this;
-    self.authorID = authorID;
-    util.postJSON('author/GetAuthorWorks', { AuthorID: authorID }, function (res) {
+    util.postJSON('author/GetAuthorWorks', { AuthorID: self.authorID }, function (res) {
       if(res.success) {
         let data = res.data;
         self.ref.doubleCheck.setData(data);

@@ -8,6 +8,7 @@ class HotWork extends migi.Component {
   constructor(...data) {
     super(...data);
   }
+  @bind dataList = []
   autoWidth() {
     this.list = this.ref.list.element;
     this.$list = $(this.list);
@@ -16,11 +17,10 @@ class HotWork extends migi.Component {
     let $ul = $c.find('ul');
     $c.css('width', $ul.width() + 1);
   }
-  @bind dataList = []
   click(e, vd, tvd) {
-    let worksID = tvd.props.WorksID;
+    let worksID = tvd.props.worksID;
     if(worksID) {
-      jsBridge.pushWindow('work.html?id=' + worksID);
+      util.goto('/works/v1/' + worksID);
     }
   }
   render() {

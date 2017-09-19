@@ -32,7 +32,8 @@ class Author extends migi.Component {
                 <Works/>,
                 self.element
               );
-              works.load(self.authorID);
+              works.authorID = self.authorID;
+              works.load();
             }
             works.show();
             break;
@@ -42,7 +43,8 @@ class Author extends migi.Component {
                 <AuthorComment/>,
                 self.element
               );
-              authorComment.load(self.authorID);
+              authorComment.authorID = authorID;
+              authorComment.load();
             }
             authorComment.show();
             break;

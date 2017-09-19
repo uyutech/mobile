@@ -17,9 +17,9 @@ class HotAuthor extends migi.Component {
   }
   @bind dataList = []
   click(e, vd, tvd) {
-    let AuthorID = tvd.props.AuthorID;
-    if(AuthorID) {
-      location.href = 'author.html?id=' + AuthorID;
+    let authorID = tvd.props.authorID;
+    if(authorID) {
+      util.goto('/author/v1/' + authorID);
     }
   }
   render() {
@@ -31,7 +31,7 @@ class HotAuthor extends migi.Component {
             {
               this.dataList.map(function(item) {
                 let types = item.WorksType || [];
-                return <li AuthorID={ item.AuthorID }>
+                return <li authorID={ item.AuthorID }>
                   <div class="pic" style={ `background:url(${item.Head_url || '//zhuanquan.xyz/img/blank.png'})` }>
                     {
                       types.slice(0, 2).map(function(item) {

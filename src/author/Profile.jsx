@@ -73,7 +73,7 @@ class Profile extends migi.Component {
           <h3>{ this.authorName || '&nbsp;' }</h3>
           {
             this.authorType.map(function(item) {
-              return <span class={ `cp-author_type_${item}` }/>;
+              return <span class={ `cp-author-type-${item}` }/>;
             })
           }
         </div>

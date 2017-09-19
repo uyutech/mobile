@@ -1,0 +1,98 @@
+/**
+ * Created by army8735 on 2017/9/19.
+ */
+
+@import '../../common/var.less';
+@import '../../component/author/index.less';
+
+.search{
+  > ul{
+    background:#fff;
+    > li{
+      position:relative;
+      display:flex;
+      padding:0.1rem;
+      box-sizing:border-box;
+      align-items:center;
+      &.author{
+        height:0.75rem;
+        border-bottom:1px solid #4E8EB0;
+        .pic{
+          display:block;
+          width:0.45rem;
+          height:0.45rem;
+          border-radius:100%;
+          overflow:hidden;
+          background:#eee;
+        }
+        .info{
+          margin:0 0.1rem;
+          width:1.1rem;
+          overflow:hidden;
+          .name{
+            white-space:nowrap;
+            height:0.3rem;
+            h4{
+              display:inline-block;
+              margin-right:0.02rem;
+              font-size:0.14rem;
+              font-weight:400;
+              vertical-align:middle;
+              strong{
+                color:#4E8EB0;
+                font-weight:400;
+              }
+            }
+            span{
+              margin-right:-0.05rem;
+              vertical-align:middle;
+            }
+          }
+          p{
+            color:#B1C0C9;
+            font-size:0.1rem;
+          }
+        }
+        .works{
+          flex:1;
+          overflow:hidden;
+          h5{
+            color:#B1C0C9;
+            font-size:0.1rem;
+            font-weight:400;
+          }
+          .list{
+            overflow:auto;
+            transform:translate3d(0,0,0);
+            .c{
+              width:9999rem;
+              ul{
+                display:inline-block;
+                li{
+                  display:inline-block;
+                  margin-right:0.05rem;
+                  padding:1px;
+                  height:0.18rem;
+                  box-sizing:border-box;
+                  border-radius:0.18rem;
+                  background:@bgLinearGradient;
+                  a{
+                    display:block;
+                    padding:0 0.05rem;
+                    height:0.16rem;
+                    line-height:0.16rem;
+                    border-radius:0.16rem;
+                    background:#fff;
+                    color:#4E8EB0;
+                    font-size:0.1rem;
+                    white-space:nowrap;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -22,7 +22,7 @@ class BotNav extends migi.Component {
       window.history.pushState({
         name,
         title,
-      }, title, name + '.html');
+      }, title, util.getUrl('/' + name));
       this.emit('change', name, title);
     }
   }
@@ -40,7 +40,7 @@ class BotNav extends migi.Component {
     $elem.addClass('cur');
   }
   render() {
-    return <div class="bot_nav" onClick={ { li: this.click } }>
+    return <div class="bot-nav" onClick={ { li: this.click } }>
       <ul>
         <li class="follow" rel="follow">
           <b class="icon"/>

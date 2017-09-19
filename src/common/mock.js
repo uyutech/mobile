@@ -11,14 +11,18 @@ export default {
       success(res.default || res);
     }, 20);
   },
-  goto: function(url) {
+  getUrl: function(url) {
     if(/^\/works\/v\d+\/\d+$/.test(url)) {
-      let id = /^\/works\/v\d+\/(\d+)$/.exec(url);
+      let id = /^\/works\/v\d+\/(\d+)$/.exec(url)[1];
       url = 'works.html?' + id;
     }
     else if(/^\/author\/v\d+\/\d+$/.test(url)) {
-      let id = /^\/author\/v\d+\/(\d+)$/.exec(url);
+      let id = /^\/author\/v\d+\/(\d+)$/.exec(url)[1];
       url = 'author.html?' + id;
+    }
+    else if(/^\/(?:follow)|(?:zhuanquan)|(?:find)|(?:my)$/.test(url)) {
+      let name = /^\/(?:follow)|(?:zhuanquan)|(?:find)|(?:my)$/.exec(url)[0];
+      url = name.slice(1) + '.html'
     }
     location.href = url;
   }

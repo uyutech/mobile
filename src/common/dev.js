@@ -27,11 +27,6 @@ export default {
           xhr.withCredentials = true;
         },
         success: function (data, state, xhr) {
-          // console.log('ajax success: ' + url + ', ' + JSON.stringify(data));
-          // if(!data.success && data.code === 1000) {
-          //   migi.eventBus.emit('NEED_LOGIN');
-          //   return;
-          // }
           success(data, state, xhr);
         },
         error: function (data) {
@@ -45,7 +40,7 @@ export default {
     }
     return load();
   },
-  goto: function(url) {
+  getUrl: function(url) {
     if(/^\/works\/v\d+\/\d+$/.test(url)) {
       let id = /^\/works\/v\d+\/(\d+)$/.exec(url)[1];
       url = 'works.html?' + id;
@@ -54,7 +49,15 @@ export default {
       let id = /^\/author\/v\d+\/(\d+)$/.exec(url)[1];
       url = 'author.html?' + id;
     }
-    location.href = url;
+    else if(/^\/(?:follow)|(?:zhuanquan)|(?:find)|(?:my)$/.test(url)) {
+      let name = /^\/(?:follow)|(?:zhuanquan)|(?:find)|(?:my)$/.exec(url)[0];
+      url = name + '.html';
+    }
+    else if(/^\/search(\/.*)?/.test(url)) {
+      let kw = /^\/search(\/.*)?/.exec(url)[1] || '';
+      url = 'search.html?' + kw.slice(1);
+    }
+    return url;
   }
 };
 
@@ -66,4 +69,8 @@ if(/\/works\.html\?\d+$/.test(url)) {
 else if(/\/author\.html\?\d+$/.test(url)) {
   let id = /\/author\.html\?(\d+)$/.exec(url)[1];
   window.authorID = id;
+}
+else if(/\/search\.html\?(.*)$/.test(url)) {
+  let kw = /\/search\.html\?(.*)$/.exec(url)[1];
+  window.kw = decodeURIComponent(kw);
 }
