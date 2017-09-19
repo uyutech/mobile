@@ -90,12 +90,19 @@ class Works extends migi.Component {
     this.rootId = null;
   }
   input(e, vd) {
-    let v = $(vd.element).val().trim();
-    this.hasContent = v.length > 0;
-  }
-  focus() {
     if(window.IS_LOGIN !== 'True') {
       migi.eventBus.emit('NEED_LOGIN');
+      $(vd.element).blur();
+    }
+    else {
+      let v = $(vd.element).val().trim();
+      this.hasContent = v.length > 0;
+    }
+  }
+  focus(e, vd) {
+    if(window.IS_LOGIN !== 'True') {
+      migi.eventBus.emit('NEED_LOGIN');
+      $(vd.element).blur();
     }
   }
   click(e) {

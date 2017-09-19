@@ -6,7 +6,7 @@ import DoubleCheck from '../component/doublecheck/DoubleCheck.jsx';
 import PlayList from '../component/playlist/PlayList.jsx';
 
 let ajax;
-let SortType = '0';
+let SortType = '1';
 let Parameter = '';
 
 class Works extends migi.Component {
@@ -71,8 +71,8 @@ class Works extends migi.Component {
           <li class="video"></li>
         </ul>
         <ul class="type fn-clear" onClick={ this.switchType }>
-          <li class="cur" rel="0">最热</li>
-          <li rel="1">最新</li>
+          <li class="cur" rel="1">最热</li>
+          <li rel="0">最新</li>
         </ul>
       </div>
       <PlayList ref="playList"/>

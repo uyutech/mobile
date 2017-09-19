@@ -277,7 +277,7 @@ class Comment extends migi.Component {
     </li>;
   }
   render() {
-    return <div class="cp_comment">
+    return <div class="cp-comment">
       <ul class="list" ref="list"/>
       <p class={ 'message' + (this.message ? '' : ' fn-hide') }>{ this.message }</p>
     </div>;

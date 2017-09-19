@@ -161,7 +161,7 @@ class WorkComment extends migi.Component {
         <li class="cur" rel="0">最新</li>
         <li rel="1">最热</li>
       </ul>
-      <Comment ref="comment" zanUrl="works/AddCommentLike" subUrl="works/GetTocomment_T_List" delUrl="works/DeleteCommentByID"/>
+      <Comment ref="comment" zanUrl="works/AddLikeBehavior" subUrl="works/GetTocomment_T_List" delUrl="works/DeleteCommentByID"/>
     </div>;
   }
 }

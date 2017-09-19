@@ -17,7 +17,7 @@ class HotCollection extends migi.Component {
     $c.css('width', $ul.width() + 1);
   }
   render() {
-    return <div class="cp_hotcollection">
+    return <div class="cp-hotcollection">
       <h3>{ this.props.title }</h3>
       <div class="list" ref="list">
         <div class="c">

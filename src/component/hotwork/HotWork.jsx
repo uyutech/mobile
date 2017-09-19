@@ -25,7 +25,7 @@ class HotWork extends migi.Component {
   }
   render() {
     let authorId = this.props.authorId;
-    return <div class="cp_hotwork">
+    return <div class="cp-hotwork">
       <h3>{ this.props.title }</h3>
       <div class="list" ref="list">
         <div class="c">

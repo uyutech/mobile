@@ -12,7 +12,7 @@ class Dynamics extends migi.Component {
     jsBridge.openUri(url);
   }
   render() {
-    return <div class="cp_dynamic">
+    return <div class="cp-dynamic">
       <ul class={ this.list.length ? '' : 'fn-hide' } onClick={ { li: this.click } }>
         {
           this.list.map(function(item) {

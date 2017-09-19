@@ -23,7 +23,7 @@ class HotAuthor extends migi.Component {
     }
   }
   render() {
-    return <div class="cp_hotauthor">
+    return <div class="cp-hotauthor">
       <h3>{ this.props.title }</h3>
       <div class="list" ref="list">
         <div class="c">
@@ -35,7 +35,7 @@ class HotAuthor extends migi.Component {
                   <div class="pic" style={ `background:url(${item.Head_url || '//zhuanquan.xyz/img/blank.png'})` }>
                     {
                       types.slice(0, 2).map(function(item) {
-                        return <b class={ `cp_author_type${item}` }/>;
+                        return <b class={ `cp-author_type${item}` }/>;
                       })
                     }
                   </div>

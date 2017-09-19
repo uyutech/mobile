@@ -2,6 +2,8 @@
  * Created by army8735 on 2017/9/18.
  */
 
+import MLogin from '../component/mlogin/MLogin.jsx';
+
 let mlogin;
 
 migi.eventBus.on('NEED_LOGIN', function() {

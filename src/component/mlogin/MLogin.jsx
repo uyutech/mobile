@@ -6,6 +6,7 @@ class NeedLogin extends migi.Component {
   constructor(...data) {
     super(...data);
   }
+  @bind message
   show() {
     $(this.element).removeClass('fn-hide');
   }
@@ -16,13 +17,12 @@ class NeedLogin extends migi.Component {
     e.preventDefault();
     this.hide();
   }
-  @bind message
   render() {
     return <div class="cp-mlogin fn-hide">
       <div class="c">
-        <p>{ this.message || '您还没有登录，不能进行相关操作噢~' }</p>
-        <p>或选择 <a href={ window.LOGIN_URL }>立即登录</a></p>
-        <a href={ window.LOGIN_URL } class="weibo"/>
+        <h3>您尚未登录...</h3>
+        <p>{ this.message || '登录后即可进行相关操作~' }</p>
+        <a href={ window.LOGIN_URL } class="weibo">微博登录</a>
         <a href="#" class="close" onClick={ this.clickClose }/>
       </div>
     </div>;

@@ -28,7 +28,7 @@ class Tags extends migi.Component {
     $c.css('width', $ul.width() + 1);
   }
   render() {
-    return <div class="cp_tags">
+    return <div class="cp-tags">
       <div class="l1" ref="l1" onClick={ { li: this.clickL1 } }>
         <div class="c">
           <ul>

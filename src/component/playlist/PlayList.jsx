@@ -41,7 +41,7 @@ class PlayList extends migi.Component {
     location.href = 'works.html';
   }
   render() {
-    return <div class="cp_playlist">
+    return <div class="cp-playlist">
       <ul class="list" ref="list" onClick={ { '.pic': this.click, '.txt': this.click } }/>
     </div>;
   }

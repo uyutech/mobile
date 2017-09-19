@@ -160,7 +160,7 @@ class DoubleCheck extends migi.Component {
     $c.css('width', $ul.width() + 1);
   }
   render() {
-    return <div class="cp_doublecheck">
+    return <div class="cp-doublecheck">
       <div class="l1" ref="l1" onClick={ { li: this.clickL1 } }>
         <div class="c">
           <ul>
