@@ -10,6 +10,7 @@ let SortType = 0;
 let MyComment = 0;
 let CurrentCount = 0;
 let ajax;
+let ajaxMore;
 let loadEnd;
 let $window = $(window);
 
@@ -47,6 +48,9 @@ class WorkComment extends migi.Component {
     if(ajax) {
       ajax.abort();
     }
+    if(ajaxMore) {
+      ajaxMore.abort();
+    }
     self.loading = true;
     ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
@@ -55,10 +59,10 @@ class WorkComment extends migi.Component {
         Skip += Take;
         if(data.data.length) {
           self.ref.comment.message = '';
-          self.ref.comment.showComment(res.data.data);
+          self.ref.comment.appendData(res.data.data);
         }
         else {
-          self.ref.comment.showComment(res.data.data);
+          self.ref.comment.appendData(res.data.data);
           self.ref.comment.message = '暂无评论';
           loadEnd = true;
         }
@@ -67,12 +71,10 @@ class WorkComment extends migi.Component {
         if(res.code === 1000) {
           migi.eventBus.emit('NEED_LOGIN');
         }
-        self.ref.comment.showComment();
         self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       }
       self.loading = false;
     }, function(res) {
-      self.ref.comment.showComment();
       self.ref.comment.message = res.message || util.ERROR_MESSAGE;
       self.loading = false;
     });
@@ -84,13 +86,13 @@ class WorkComment extends migi.Component {
     bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
     if(self.showComment && !self.loading && !loadEnd && bool) {
       self.loading = true;
-      ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+      ajaxMore = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;
           Skip += Take;
           if(data.data.length) {
-            self.ref.comment.addMore(data.data);
+            self.ref.comment.appendData(data.data);
             if(data.data.length < Take) {
               self.ref.comment.message = '已经到底了';
               loadEnd = true;
@@ -122,10 +124,12 @@ class WorkComment extends migi.Component {
     if(ajax) {
       ajax.abort();
     }
+    if(ajaxMore) {
+      ajaxMore.abort();
+    }
     loadEnd = false;
     this.loading = false;
-    this.ref.comment.showComment();
-    this.ref.comment.abort();
+    this.ref.comment.clearData();
     this.load();
   }
   switchType2(e, vd) {
@@ -139,10 +143,12 @@ class WorkComment extends migi.Component {
     if(ajax) {
       ajax.abort();
     }
+    if(ajaxMore) {
+      ajaxMore.abort();
+    }
     loadEnd = false;
     this.loading = false;
-    this.ref.comment.showComment();
-    this.ref.comment.abort();
+    this.ref.comment.clearData();
     this.load();
   }
   render() {

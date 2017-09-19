@@ -118,15 +118,6 @@ class Comment extends migi.Component {
     });
   }
   @bind message
-  abort() {
-    if(ajax) {
-      ajax.abort();
-    }
-    this.message = '';
-    subLoadHash = {};
-    subSkipHash = {};
-    $lastSlide = null;
-  }
   slide($slide) {
     if(ajax) {
       ajax.abort();
@@ -169,7 +160,7 @@ class Comment extends migi.Component {
             data.data.forEach(function(item) {
               s += self.genChildComment(item);
             });
-            $ul.html(s);
+            $ul.append(s);
             if(data.data.length >= data.Size) {
               $message.addClass('fn-hide');
             }
@@ -191,7 +182,17 @@ class Comment extends migi.Component {
       }
     }
   }
-  showComment(data) {
+  clearData() {
+    if(ajax) {
+      ajax.abort();
+    }
+    this.message = '';
+    this.setData();
+    subLoadHash = {};
+    subSkipHash = {};
+    $lastSlide = null;
+  }
+  setData(data) {
     let self = this;
     let s = '';
     (data || []).forEach(function(item) {
@@ -199,7 +200,7 @@ class Comment extends migi.Component {
     });
     $(self.ref.list.element).html(s);
   }
-  addMore(data) {
+  appendData(data) {
     let self = this;
     let s = '';
     (data || []).forEach(function(item) {
@@ -207,10 +208,10 @@ class Comment extends migi.Component {
     });
     $(self.ref.list.element).append(s);
   }
-  addNew(item) {
+  prependData(item) {
     this.genComment(item).prependTo(this.ref.list.element);
   }
-  addChild(item) {
+  prependChild(item) {
     let li = this.genChildComment(item);
     let $comment = $('#comment_' + item.RootID);
     let $list2 = $comment.find('.list2');
@@ -274,12 +275,6 @@ class Comment extends migi.Component {
         <pre cid={ item.Send_ID } rid={ item.RootID } name={ item.Send_UserName }>{ item.Send_Content }</pre>
       </div>
     </li>;
-  }
-  switchType(e, vd, tvd) {
-    let $ul = $(vd.element);
-    $ul.toggleClass('alt');
-    $ul.find('li').toggleClass('cur');
-    this.emit('switchType', $ul.find('.cur').attr('rel'));
   }
   render() {
     return <div class="cp_comment">

@@ -120,11 +120,11 @@ class Works extends migi.Component {
           $input.val('');
           self.hasContent = false;
           if(RootID === -1) {
-            self.ref.workComment.ref.comment.addNew(res.data);
+            self.ref.workComment.ref.comment.prependData(res.data);
             self.ref.workComment.ref.comment.message = '';
           }
           else {
-            self.ref.workComment.ref.comment.addChild(res.data);
+            self.ref.workComment.ref.comment.prependChild(res.data);
           }
         }
         else if(res.code === 1000) {
