@@ -27,6 +27,7 @@ let util = {
     error = error || function() {};
     return env.ajax(url, data, success, error, 'post');
   },
+  goto: env.goto,
   sort,
   ERROR_MESSAGE: '人气大爆发，请稍后再试。'
 };

@@ -3,6 +3,7 @@
  */
 
 import $ from 'anima-yocto-ajax';
+import qs from 'anima-querystring';
 
 export default {
   ajax: function(url, data, success, error, type) {
@@ -44,4 +45,25 @@ export default {
     }
     return load();
   },
+  goto: function(url) {
+    if(/^\/works\/v\d+\/\d+$/.test(url)) {
+      let id = /^\/works\/v\d+\/(\d+)$/.exec(url)[1];
+      url = 'works.html?' + id;
+    }
+    else if(/^\/author\/v\d+\/\d+$/.test(url)) {
+      let id = /^\/author\/v\d+\/(\d+)$/.exec(url)[1];
+      url = 'author.html?' + id;
+    }
+    location.href = url;
+  }
 };
+
+let url = location.href;
+if(/\/works\.html\?\d+$/.test(url)) {
+  let id = /\/works\.html\?(\d+)$/.exec(url)[1];
+  window.workID = id;
+}
+else if(/\/author\.html\?\d+$/.test(url)) {
+  let id = /\/author\.html\?(\d+)$/.exec(url)[1];
+  window.authorID = id;
+}

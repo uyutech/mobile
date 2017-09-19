@@ -24,9 +24,13 @@ class Author extends migi.Component {
     let $ul = $c.find('ul');
     $c.css('width', $ul.width() + 1);
   }
+  clickAuthor(e, vd, tvd) {
+    let id = tvd.props.id;
+    util.goto(`/author/v1/${id}`)
+  }
   render() {
     return <div class="author">
-      <div class="c" ref="c">
+      <div class="c" ref="c" onClick={ { '.item': this.clickAuthor } }>
         <ul>
           {
             this.list

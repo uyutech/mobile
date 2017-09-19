@@ -44,4 +44,7 @@ export default {
     }
     return load();
   },
+  goto: function(url) {
+    location.href = url;
+  }
 };
