@@ -13,7 +13,7 @@ class Dynamics extends migi.Component {
   }
   render() {
     return <div class="cp_dynamic">
-      <ul onClick={ { li: this.click } }>
+      <ul class={ this.list.length ? '' : 'fn-hide' } onClick={ { li: this.click } }>
         {
           this.list.map(function(item) {
             return <li href={ item.DynamicUrl }>
@@ -66,7 +66,7 @@ class Dynamics extends migi.Component {
           })
         }
       </ul>
-      <div class="no">暂无动态</div>
+      <div class={ 'no' + (this.list.length ? ' fn-hide' : '') }>暂无动态</div>
     </div>;
   }
 }
