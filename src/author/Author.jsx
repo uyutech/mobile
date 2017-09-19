@@ -10,6 +10,7 @@ class Author extends migi.Component {
   constructor(...data) {
     super(...data);
     let self = this;
+    self.authorID = -1;
     self.on(migi.Event.DOM, function() {
       let nav = self.ref.nav;
       let tags = nav.ref.tags;
@@ -25,6 +26,13 @@ class Author extends migi.Component {
             home.show();
             break;
           case '1':
+            if(!works) {
+              works = migi.render(
+                <Works/>,
+                self.element
+              );
+              works.load(self.authorID);
+            }
             works.show();
             break;
           case '2':
@@ -32,14 +40,18 @@ class Author extends migi.Component {
             break;
         }
       });
+      // setTimeout(function() {
+      //   tags.emit('change', '1');
+      // }, 100);
     });
   }
-  setID(authorId) {
+  setID(authorID) {
     let self = this;
+    self.authorID = authorID;
     let nav = self.ref.nav;
     let profile = nav.ref.profile;
     let link = nav.ref.link;
-    util.postJSON('author/GetAuthorDetails', { AuthorID: authorId }, function (res) {
+    util.postJSON('author/GetAuthorDetails', { AuthorID: authorID }, function (res) {
       if(res.success) {
         let data = res.data;
 
@@ -66,22 +78,7 @@ class Author extends migi.Component {
       // alert(res.message || util.ERROR_MESSAGE);
     });
     let home = self.ref.home;
-    let hotWork = home.ref.hotWork;
-    let hotAuthor = home.ref.hotAuthor;
-    util.postJSON('author/GetAuthorHomePage', { AuthorID: authorId }, function (res) {
-      if(res.success) {
-        let data = res.data;
-        hotWork.dataList = data.Hot_Works_Items;
-        hotWork.autoWidth();
-        hotAuthor.dataList = data.AuthorToAuthor;
-        hotAuthor.autoWidth();
-      }
-      else {
-        alert(res.message || util.ERROR_MESSAGE);
-      }
-    }, function(res) {
-      // alert(res.message || util.ERROR_MESSAGE);
-    });
+    home.load(authorID);
   }
   render() {
     return <div class="author">

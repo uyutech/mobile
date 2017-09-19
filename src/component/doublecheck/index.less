@@ -2,16 +2,17 @@
  * Created by army8735 on 2017/7/31.
  */
 
-.cp_tags{
+.cp_doublecheck{
   padding-bottom:0.14rem;
   background:#4E8EB0;
-  transform:translate3d(0,0,0);
   .l1{
-    padding:0.05rem 0.1rem 0;
+    padding:0 0.05rem;
     background:#fff;
+    transform:translate3d(0,0,0);
     overflow:scroll;
     .c{
       width:9999rem;
+      height:0.52rem;
       overflow:hidden;
       ul{
         display:inline-block;
@@ -20,7 +21,7 @@
           display:inline-block;
           margin-right:0.1rem;
           padding:0.12rem 0.05rem;
-          box-sizing:border-box;
+          height:0.28rem;
           &:before{
             position:absolute;
             left:0;
@@ -57,11 +58,11 @@
           }
           &.on{
             &:before{
-              transform:translate3d(0, -0.45rem, 0);
+              transform:translateY(-0.45rem);
             }
             a{
               box-shadow:0 2px 4px rgba(78, 142, 176, 0.2);
-              transform:translate3d(0, -0.07rem, 0);
+              transform:translateY(-0.07rem);
               span{
                 background:#EDF3F7;
                 box-shadow:0 2px 4px rgba(78, 142, 176, 0.2) inset;
@@ -73,11 +74,13 @@
     }
   }
   .l2{
-    padding:0.05rem 0.1rem 0 0.2rem;
+    padding:0 0.05rem;
     background:#EDF3F7;
+    transform:translate3d(0,0,0);
     overflow:scroll;
     .c{
       width:9999rem;
+      height:0.5rem;
       overflow:hidden;
       ul{
         display:inline-block;
@@ -86,7 +89,7 @@
           display:inline-block;
           margin-right:0.05rem;
           padding:0.12rem 0.05rem;
-          box-sizing:border-box;
+          height:0.24rem;
           &:before{
             position:absolute;
             left:0;
@@ -123,12 +126,12 @@
           }
           &.on{
             &:before{
-              transform:translate3d(0, -0.45rem, 0);
+              transform:translateY(-0.43rem);
             }
             a{
               background:#fff;
               box-shadow:0 2px 4px rgba(26, 72, 96, 0.4);
-              transform:translate3d(0, -0.07rem, 0);
+              transform:translateY(-0.05rem);
               span{
                 background:#4E8EB0;
                 color:#fff;

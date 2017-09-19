@@ -148,12 +148,12 @@ class WorkComment extends migi.Component {
   render() {
     return <div class="comments fn-hide">
       <ul class="type2 fn-clear" onClick={ { li: this.switchType2 } }>
-        <li class="cur" rel="0"><span>全部</span></li>
-        <li rel="1"><span>我的</span></li>
+        <li class="cur" rel="0">全部</li>
+        <li rel="1">我的</li>
       </ul>
       <ul class="type fn-clear" onClick={ { li: this.switchType } }>
-        <li class="cur" rel="0"><span>最新</span></li>
-        <li rel="1"><span>最热</span></li>
+        <li class="cur" rel="0">最新</li>
+        <li rel="1">最热</li>
       </ul>
       <Comment ref="comment" zanUrl="works/AddWorkCommentLike" subUrl="works/GetTocomment_T_List" delUrl="works/DeleteCommentByID"/>
     </div>;

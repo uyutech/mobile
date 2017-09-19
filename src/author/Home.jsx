@@ -17,6 +17,25 @@ class Home extends migi.Component {
   hide() {
     $(this.element).addClass('fn-hide');
   }
+  load(authorID) {
+    let self = this;
+    let hotWork = self.ref.hotWork;
+    let hotAuthor = self.ref.hotAuthor;
+    util.postJSON('author/GetAuthorHomePage', { AuthorID: authorID }, function (res) {
+      if(res.success) {
+        let data = res.data;
+        hotWork.dataList = data.Hot_Works_Items;
+        hotWork.autoWidth();
+        hotAuthor.dataList = data.AuthorToAuthor;
+        hotAuthor.autoWidth();
+      }
+      else {
+        alert(res.message || util.ERROR_MESSAGE);
+      }
+    }, function(res) {
+      // alert(res.message || util.ERROR_MESSAGE);
+    });
+  }
   render() {
     return <div class="home">
       <HotWork ref="hotWork" title="热门作品"/>
