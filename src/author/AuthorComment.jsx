@@ -1,5 +1,5 @@
 /**
- * Created by army8735 on 2017/9/1.
+ * Created by army8735 on 2017/9/19.
  */
 
 import Comment from '../component/comment/Comment.jsx';
@@ -14,15 +14,9 @@ let ajaxMore;
 let loadEnd;
 let $window = $(window);
 
-class WorkComment extends migi.Component {
+class AuthorComment extends migi.Component {
   constructor(...data) {
     super(...data);
-    let self = this;
-    self.on(migi.Event.DOM, function() {
-      $window.on('scroll', function() {
-        self.checkMore();
-      });
-    });
   }
   @bind showComment
   @bind rootId = null
@@ -30,7 +24,7 @@ class WorkComment extends migi.Component {
   @bind replayName
   @bind hasContent
   @bind loading
-  @bind workID
+  @bind authorID
   show() {
     let self = this;
     $(self.element).removeClass('fn-hide');
@@ -42,8 +36,9 @@ class WorkComment extends migi.Component {
     self.showComment = false;
     Skip = -1;
   }
-  load() {
+  load(authorID) {
     let self = this;
+    self.authorID = authorID;
     self.ref.comment.message = '读取中...';
     if(ajax) {
       ajax.abort();
@@ -52,7 +47,7 @@ class WorkComment extends migi.Component {
       ajaxMore.abort();
     }
     self.loading = true;
-    ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+    ajax = util.postJSON('author/GetToWorkMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
         CurrentCount = data.Size;
@@ -86,7 +81,7 @@ class WorkComment extends migi.Component {
     bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
     if(self.showComment && !self.loading && !loadEnd && bool) {
       self.loading = true;
-      ajaxMore = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+      ajaxMore = util.postJSON('author/GetToWorkMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;
@@ -161,9 +156,9 @@ class WorkComment extends migi.Component {
         <li class="cur" rel="0">最新</li>
         <li rel="1">最热</li>
       </ul>
-      <Comment ref="comment" zanUrl="works/AddCommentLike" subUrl="works/GetTocomment_T_List" delUrl="works/DeleteCommentByID"/>
+      <Comment ref="comment" zanUrl="author/AddCommentLike" subUrl="author/GetTocomment_T_List" delUrl="author/DeleteCommentByID"/>
     </div>;
   }
 }
 
-export default WorkComment;
+export default AuthorComment;

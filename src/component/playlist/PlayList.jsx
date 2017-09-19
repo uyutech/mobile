@@ -36,28 +36,12 @@ class PlayList extends migi.Component {
         // })
       //}
   }
-  switchType(e, vd) {
-    let $ul = $(vd.element);
-    $ul.toggleClass('alt');
-    $ul.find('li').toggleClass('cur');
-  }
   click(e, vd, tvd) {
     let id = tvd.props.workId;
     location.href = 'works.html';
   }
   render() {
     return <div class="cp_playlist">
-      <div class="bar">
-        <ul class="btn fn-clear">
-          <li class="all">播放全部</li>
-          <li class="audio"></li>
-          <li class="video"></li>
-        </ul>
-        <ul class="type fn-clear" onClick={ this.switchType }>
-          <li class="cur">最热</li>
-          <li>最新</li>
-        </ul>
-      </div>
       <ul class="list" ref="list" onClick={ { '.pic': this.click, '.txt': this.click } }/>
     </div>;
   }

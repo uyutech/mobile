@@ -5,8 +5,9 @@
 import DoubleCheck from '../component/doublecheck/DoubleCheck.jsx';
 import PlayList from '../component/playlist/PlayList.jsx';
 
-let last = '';
 let ajax;
+let SortType = '0';
+let Parameter = '';
 
 class Works extends migi.Component {
   constructor(...data) {
@@ -15,19 +16,11 @@ class Works extends migi.Component {
     self.authorID = -1;
     self.on(migi.Event.DOM, function() {
       self.ref.doubleCheck.on('change', function(lA, lB) {
-        let Parameter = lA.concat(lB);
-        Parameter = Parameter.length ? JSON.stringify(Parameter) : '';
-        if(last !== Parameter) {
-          last = Parameter;
-          if(ajax) {
-            ajax.abort();
-          }
-          ajax = util.postJSON('author/SearchWorks', { AuthorID: self.authorID, Parameter, Skip: 1, Take: 10 }, function(res) {
-            if(res.success) {
-              let data = res.data;
-              self.ref.playList.setData(data.data);
-            }
-          });
+        let temp = lA.concat(lB);
+        temp = temp.length ? JSON.stringify(temp) : '';
+        if(temp !== Parameter) {
+          Parameter = temp;
+          self.loadPlayList();
         }
       });
     });
@@ -47,16 +40,41 @@ class Works extends migi.Component {
         self.ref.doubleCheck.setData(data);
       }
     });
-    ajax = util.postJSON('author/SearchWorks', { AuthorID: authorID, Parameter: '', Skip: 1, Take: 10 }, function(res) {
+    self.loadPlayList();
+  }
+  loadPlayList() {
+    let self = this;
+    if(ajax) {
+      ajax.abort();
+    }
+    ajax = util.postJSON('author/SearchWorks', { AuthorID: self.authorID, Parameter, Skip: 1, Take: 10, SortType }, function(res) {
       if(res.success) {
         let data = res.data;
         self.ref.playList.setData(data.data);
       }
     });
   }
+  switchType(e, vd) {
+    let $ul = $(vd.element);
+    $ul.toggleClass('alt');
+    $ul.find('li').toggleClass('cur');
+    SortType = $ul.find('.cur').attr('rel');
+    this.loadPlayList();
+  }
   render() {
     return <div class="works fn-hide">
       <DoubleCheck ref="doubleCheck"/>
+      <div class="bar">
+        <ul class="btn fn-clear">
+          <li class="all">播放全部</li>
+          <li class="audio"></li>
+          <li class="video"></li>
+        </ul>
+        <ul class="type fn-clear" onClick={ this.switchType }>
+          <li class="cur" rel="0">最热</li>
+          <li rel="1">最新</li>
+        </ul>
+      </div>
       <PlayList ref="playList"/>
     </div>;
   }

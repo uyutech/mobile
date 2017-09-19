@@ -5,6 +5,7 @@
 import Nav from './Nav.jsx';
 import Home from './Home.jsx';
 import Works from './Works.jsx';
+import AuthorComment from './AuthorComment.jsx';
 
 class Author extends migi.Component {
   constructor(...data) {
@@ -36,12 +37,19 @@ class Author extends migi.Component {
             works.show();
             break;
           case '2':
+            if(!authorComment) {
+              authorComment = migi.render(
+                <AuthorComment/>,
+                self.element
+              );
+              authorComment.load(self.authorID);
+            }
             authorComment.show();
             break;
         }
       });
       // setTimeout(function() {
-      //   tags.emit('change', '1');
+      //   tags.emit('change', '2');
       // }, 100);
     });
   }
