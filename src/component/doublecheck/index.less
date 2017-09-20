@@ -10,6 +10,9 @@
     background:#fff;
     transform:translate3d(0,0,0);
     overflow:scroll;
+    &.loading{
+      opacity:0.3;
+    }
     .c{
       width:9999rem;
       height:0.52rem;
@@ -78,6 +81,11 @@
     background:#EDF3F7;
     transform:translate3d(0,0,0);
     overflow:scroll;
+    &.loading{
+      .c ul li a{
+        opacity:0.3;
+      }
+    }
     .c{
       width:9999rem;
       height:0.5rem;

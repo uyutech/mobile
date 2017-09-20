@@ -10,6 +10,14 @@ if ($request_uri ~ /search/(.*)) {
     set $search_param $1;
 }
 
+if ($request_uri ~ /author/(.*)) {
+    set $author_param $1;
+}
+
+if ($request_uri ~ /works/(.*)) {
+    set $works_param $1;
+}
+
 location / {
     index  index.html index.htm;
     proxy_pass http://127.0.0.1:8080;
@@ -43,6 +51,16 @@ location /my {
 
 location /search {
     proxy_pass http://127.0.0.1:8080/search.html?$search_param;
+    proxy_set_header Host $host:$server_port;
+}
+
+location /author {
+    proxy_pass http://127.0.0.1:8080/author.html?$author_param;
+    proxy_set_header Host $host:$server_port;
+}
+
+location /works {
+    proxy_pass http://127.0.0.1:8080/works.html?$works_param;
     proxy_set_header Host $host:$server_port;
 }
 ```

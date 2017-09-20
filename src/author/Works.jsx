@@ -8,6 +8,7 @@ import PlayList from '../component/playlist/PlayList.jsx';
 let ajax;
 let SortType = '1';
 let Parameter = '';
+let ajaxL2;
 
 class Works extends migi.Component {
   constructor(...data) {
@@ -15,7 +16,28 @@ class Works extends migi.Component {
     let self = this;
     self.authorID = -1;
     self.on(migi.Event.DOM, function() {
-      self.ref.doubleCheck.on('change', function(lA, lB) {
+      let doubleCheck = self.ref.doubleCheck;
+      doubleCheck.on('changeL1', function(param) {
+        if(param) {
+          if(ajaxL2) {
+            ajaxL2.abort();
+          }
+          doubleCheck.isLoadindL2 = true;
+          util.postJSON('author/GetAuthorFilterlevelB', { AuthorID: self.authorID, FilterlevelA: param }, function (res) {
+            if(res.success) {
+              let data = res.data;
+              doubleCheck.tagList2 = data;
+              doubleCheck.autoWidth2();
+              doubleCheck.setCacheL2(param, data);
+              doubleCheck.checkL2();
+            }
+            doubleCheck.isLoadindL2 = false;
+          }, function() {
+            doubleCheck.isLoadindL2 = false;
+          });
+        }
+      });
+      doubleCheck.on('change', function(lA, lB) {
         let temp = lA.concat(lB);
         temp = temp.length ? JSON.stringify(temp) : '';
         if(temp !== Parameter) {

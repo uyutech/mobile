@@ -5,6 +5,8 @@
 import authorTemplate from '../author/authorTemplate';
 
 let choosedL2 = {};
+let all;
+let cacheL2 = {};
 
 class DoubleCheck extends migi.Component {
   constructor(...data) {
@@ -16,19 +18,6 @@ class DoubleCheck extends migi.Component {
   @bind
   set tagList(v) {
     this._tagList = v;
-    let list = [];
-    let hash = {};
-    v.forEach(function(item) {
-      item.FilterlevelB.forEach(function(item2) {
-        let key = 'id' + item2.ID + ',type' + item2.TagType;
-        if(!hash.hasOwnProperty(key)) {
-          hash[key] = true;
-          list.push(item2);
-        }
-      });
-    });
-    this.tagList2 = list;
-    this.autoWidth2();
   }
   get tagList2() {
     return this._tagList2 || [];
@@ -37,9 +26,16 @@ class DoubleCheck extends migi.Component {
   set tagList2(v) {
     this._tagList2 = v;
   }
+  @bind isLoadindL2
   setData(v) {
-    this.tagList = v;
+    this.tagList = v.FilterlevelA;
     this.autoWidth();
+    this.tagList2 = v.FilterlevelB;
+    this.autoWidth2();
+    all = this.tagList2;
+  }
+  setCacheL2(k, v) {
+    cacheL2[k] = v;
   }
   clickL1(e, vd, tvd) {
     e.preventDefault();
@@ -47,81 +43,54 @@ class DoubleCheck extends migi.Component {
     let $li = $(tvd.element);
     $li.toggleClass('on');
     let $lis = $ul.find('.on');
-    let list = [];
-    let hash = {};
     // 都没选为全部
     if(!$lis[0]) {
-      this.tagList.forEach(function(item) {
-        item.FilterlevelB.forEach(function(item2) {
-          let key = 'id' + item2.ID + ',type' + item2.TagType;
-          if(!hash.hasOwnProperty(key)) {
-            hash[key] = true;
-            list.push(item2);
-          }
+      this.tagList2 = all;
+    }
+    else {
+      let param = [];
+      $lis.each(function(index, li) {
+        let $li = $(li);
+        param.push({
+          Filterlevel: $li.text()
         });
       });
-    }
-    else {
-      let choosed = {};
-      $lis.each(function(index, li) {
-        choosed[$(li).attr('rel')] = true;
-      });
-      this.tagList.forEach(function(item, i) {
-        if(choosed.hasOwnProperty(i)) {
-          item.FilterlevelB.forEach(function(item2) {
-            let key = 'id' + item2.ID + ',type' + item2.TagType;
-            if(!hash.hasOwnProperty(key)) {
-              hash[key] = true;
-              list.push(item2);
-            }
-          });
-        }
-      });
-    }
-    // 和上次没变化不改变
-    let hasChange = false;
-    if(list.length !== this.tagList2.length) {
-      hasChange = true;
-    }
-    else {
-      for(let i = 0, len = list.length; i < len; i++) {
-        if(list[i].ID !== this.tagList2[i].ID && list[i].TagType !== this.tagList2[i].TagType) {
-          hasChange = true;
-          break;
-        }
+      param = JSON.stringify(param);
+      if(cacheL2[param]) {
+        this.tagList2 = cacheL2[param];
+        this.change();
       }
-    }
-    if(hasChange) {
-      this.tagList2 = list;
-      this.autoWidth2();
-      this.checkL2();
-      this.change();
+      this.emit('changeL1', param);
     }
   }
   clickL2(e, vd, tvd) {
     e.preventDefault();
-    let key = 'id' + tvd.props.id + ',type' + tvd.props.tagType;
+    if($(vd.element).hasClass('loading')) {
+      return;
+    }
     let $li = $(tvd.element);
-    choosedL2[key] = !$li.hasClass('on');
-    this.tagList2 = this.tagList2;
+    $li.toggleClass('on');
+    let name = $li.text();
+    choosedL2[name] = $li.hasClass('on');
     this.change();
   }
   checkL2() {
     // 遍历l2标签，chossed中没有的删除
     let hash = {};
-    this.tagList2.forEach(function(item) {
-      let key = 'id' + item.ID + ',type' + item.TagType;
-      hash[key] = true;
+    $(this.ref.l2.element).find('li.on').each(function(i, li) {
+      let $li = $(li);
+      hash[$li.text()] = true;
     });
     Object.keys(choosedL2).forEach(function(key) {
       if(!hash[key]) {
         choosedL2[key] = false;
       }
     });
+    this.change();
   }
   change() {
     let self = this;
-    let $lis = $(self.ref.l1.element).find('li.on');
+    let $lis = $(self.ref.l1.element).find('li.on');console.log($lis);
     let lA = [];
     $lis.each(function(i, li) {
       let index = $(li).attr('rel');
@@ -130,16 +99,18 @@ class DoubleCheck extends migi.Component {
         ID: item.ID,
         TagType: 0,
         Filterlevel: 'A',
+        ParameterAName: item.TagName,
       });
     });
     let lB = [];
     this.tagList2.forEach(function(item) {
-      let key = 'id' + item.ID + ',type' + item.TagType;
+      let key = item.TagName;
       if(choosedL2[key]) {
         lB.push({
           ID: item.ID,
           TagType: item.TagType,
           Filterlevel: item.Filterlevel,
+          ParameterAName: item.TagName,
         });
       }
     });
@@ -166,19 +137,19 @@ class DoubleCheck extends migi.Component {
           <ul>
             {
               this.tagList.map(function(item, i) {
-                return <li rel={ i }><a href="#"><span>{ authorTemplate(item.ID).name }</span></a></li>;
+                return <li rel={ i } tagType={ item.TagType } id={ item.ID }><a href="#"><span>{ item.TagName }</span></a></li>;
               })
             }
           </ul>
         </div>
       </div>
-      <div class="l2" ref="l2" onClick={ { li: this.clickL2 } }>
+      <div class={ 'l2' + (this.isLoadindL2 ? ' loading' : '') } ref="l2" onClick={ { li: this.clickL2 } }>
         <div class="c">
           <ul>
             {
-              this.tagList2.map(function(item) {
+              this.tagList2.map(function(item, i) {
                 let key = 'id' + item.ID + ',type' + item.TagType;
-                return <li tagType={ item.TagType } id={ item.ID } class={ choosedL2[key] ? 'on' : '' }><a href="#"><span>{ item.TagName }</span></a></li>;
+                return <li rel={ i } tagType={ item.TagType } id={ item.ID } class={ choosedL2[key] ? 'on' : '' }><a href="#"><span>{ item.TagName }</span></a></li>;
               })
             }
           </ul>
