@@ -26,7 +26,7 @@ class Author extends migi.Component {
   }
   clickAuthor(e, vd, tvd) {
     let id = tvd.props.id;
-    util.goto(`/author/v1/${id}`)
+    util.goto(`/author/${id}`)
   }
   render() {
     return <div class="author">

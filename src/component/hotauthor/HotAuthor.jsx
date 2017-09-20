@@ -19,7 +19,7 @@ class HotAuthor extends migi.Component {
   click(e, vd, tvd) {
     let authorID = tvd.props.authorID;
     if(authorID) {
-      util.goto('/author/v1/' + authorID);
+      util.goto('/author/' + authorID);
     }
   }
   render() {

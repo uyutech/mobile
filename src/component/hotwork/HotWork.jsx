@@ -20,7 +20,7 @@ class HotWork extends migi.Component {
   click(e, vd, tvd) {
     let worksID = tvd.props.worksID;
     if(worksID) {
-      util.goto('/works/v1/' + worksID);
+      util.goto('/works/' + worksID);
     }
   }
   render() {
