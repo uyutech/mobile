@@ -18,7 +18,7 @@ class Find extends migi.Component {
   }
   load() {
     let self = this;
-    util.postJSON('find/GetTag', { Skip:0, Take: 10 }, function(res) {
+    util.postJSON('api/find/GetTag', { Skip:0, Take: 10 }, function(res) {
       if(res.success) {
         let data = res.data;
         // self.ref.doubleCheck.setData(data);

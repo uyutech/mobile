@@ -50,9 +50,9 @@ class Author extends migi.Component {
             break;
         }
       });
-      setTimeout(function() {
-        tags.emit('change', '1');
-      }, 100);
+      // setTimeout(function() {
+      //   tags.emit('change', '1');
+      // }, 100);
     });
   }
   setID(authorID) {
@@ -61,7 +61,7 @@ class Author extends migi.Component {
     let nav = self.ref.nav;
     let profile = nav.ref.profile;
     let link = nav.ref.link;
-    util.postJSON('author/GetAuthorDetails', { AuthorID: authorID }, function (res) {
+    util.postJSON('api/author/GetAuthorDetails', { AuthorID: authorID }, function (res) {
       if(res.success) {
         let data = res.data;
 

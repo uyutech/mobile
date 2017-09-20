@@ -21,7 +21,7 @@ class Home extends migi.Component {
     let self = this;
     let hotWork = self.ref.hotWork;
     let hotAuthor = self.ref.hotAuthor;
-    util.postJSON('author/GetAuthorHomePage', { AuthorID: authorID }, function (res) {
+    util.postJSON('api/author/GetAuthorHomePage', { AuthorID: authorID }, function (res) {
       if(res.success) {
         let data = res.data;
         hotWork.dataList = data.Hot_Works_Items;

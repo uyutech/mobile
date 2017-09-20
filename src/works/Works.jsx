@@ -70,7 +70,7 @@ class Works extends migi.Component {
     if(ajax) {
       ajax.abort();
     }
-    ajax = util.postJSON('works/GetWorkDetails', { WorksID: workID }, function(res) {
+    ajax = util.postJSON('api/works/GetWorkDetails', { WorksID: workID }, function(res) {
       if(res.success) {
         let data = res.data;
         media.setCover(data.cover_Pic);
@@ -115,7 +115,7 @@ class Works extends migi.Component {
       let RootID = self.rootId !== null ? self.rootId : -1;
       self.loading = true;
       self.ref.media.switchTo(1);
-      util.postJSON('works/AddComment', {
+      util.postJSON('api/works/AddComment', {
         ParentID,
         RootID,
         Content,

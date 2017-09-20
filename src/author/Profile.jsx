@@ -36,6 +36,9 @@ class Profile extends migi.Component {
           self.fansNumber = res.data.followCount;
           alert('取关成功');
         }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
+        }
         else {
           alert(res.message || util.ERROR_MESSAGE);
         }
@@ -51,6 +54,9 @@ class Profile extends migi.Component {
           self.isLike = true;
           self.fansNumber = res.data.followCount;
           alert('关注成功');
+        }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
         }
         else {
           alert(res.message || util.ERROR_MESSAGE);

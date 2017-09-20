@@ -52,7 +52,7 @@ class AuthorComment extends migi.Component {
       ajaxMore.abort();
     }
     self.loading = true;
-    ajax = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+    ajax = util.postJSON('api/author/GetToAuthorMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
         CurrentCount = data.Size;
@@ -86,7 +86,7 @@ class AuthorComment extends migi.Component {
     bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
     if(self.showComment && !self.loading && !loadEnd && bool) {
       self.loading = true;
-      ajaxMore = util.postJSON('author/GetToAuthorMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+      ajaxMore = util.postJSON('api/author/GetToAuthorMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;

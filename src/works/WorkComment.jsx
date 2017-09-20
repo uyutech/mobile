@@ -52,7 +52,7 @@ class WorkComment extends migi.Component {
       ajaxMore.abort();
     }
     self.loading = true;
-    ajax = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+    ajax = util.postJSON('api/works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
       if(res.success) {
         let data = res.data;
         CurrentCount = data.Size;
@@ -86,7 +86,7 @@ class WorkComment extends migi.Component {
     bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
     if(self.showComment && !self.loading && !loadEnd && bool) {
       self.loading = true;
-      ajaxMore = util.postJSON('works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
+      ajaxMore = util.postJSON('api/works/GetToWorkMessage_List', { WorkID: self.workID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
         if(res.success) {
           let data = res.data;
           CurrentCount = data.Size;

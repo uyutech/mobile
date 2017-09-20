@@ -20,7 +20,7 @@ class Search extends migi.Component {
   load(kw) {
     let self = this;
     self.kw = kw;
-    util.postJSON('search/Homesearch', { Parameter: kw }, function(res) {
+    util.postJSON('api/search/Homesearch', { Parameter: kw }, function(res) {
       if(res.success) {
         let data = res.data;
         let list = [];

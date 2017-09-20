@@ -23,7 +23,7 @@ class Works extends migi.Component {
             ajaxL2.abort();
           }
           doubleCheck.isLoadindL2 = true;
-          util.postJSON('author/GetAuthorFilterlevelB', { AuthorID: self.authorID, FilterlevelA: param }, function (res) {
+          util.postJSON('api/author/GetAuthorFilterlevelB', { AuthorID: self.authorID, FilterlevelA: param }, function (res) {
             if(res.success) {
               let data = res.data;
               doubleCheck.tagList2 = data;
@@ -56,7 +56,7 @@ class Works extends migi.Component {
   }
   load() {
     let self = this;
-    util.postJSON('author/GetAuthorWorks', { AuthorID: self.authorID }, function (res) {
+    util.postJSON('api/author/GetAuthorWorks', { AuthorID: self.authorID }, function (res) {
       if(res.success) {
         let data = res.data;
         self.ref.doubleCheck.setData(data);
@@ -69,7 +69,7 @@ class Works extends migi.Component {
     if(ajax) {
       ajax.abort();
     }
-    ajax = util.postJSON('author/SearchWorks', { AuthorID: self.authorID, Parameter, Skip: 1, Take: 10, SortType }, function(res) {
+    ajax = util.postJSON('api/author/SearchWorks', { AuthorID: self.authorID, Parameter, Skip: 1, Take: 10, SortType }, function(res) {
       if(res.success) {
         let data = res.data;
         self.ref.playList.setData(data.data);
