@@ -3,10 +3,10 @@
  */
  
 import Banner from './Banner.jsx';
-import DoubleCheck from '../../component/doublecheck/DoubleCheck.jsx';
-import PlayList from '../../component/playlist/PlayList.jsx';
+import DoubleCheck from '../component/doublecheck/DoubleCheck.jsx';
+import PlayList from '../component/playlist/PlayList.jsx';
 
-class FindCard extends migi.Component {
+class Find extends migi.Component {
   constructor(...data) {
     super(...data);
   }
@@ -18,7 +18,7 @@ class FindCard extends migi.Component {
   }
   load() {
     let self = this;
-    util.postJSON('search/Homesearch', {}, function(res) {
+    util.postJSON('find/GetTag', { Skip:0, Take: 10 }, function(res) {
       if(res.success) {
         let data = res.data;
         // self.ref.doubleCheck.setData(data);
@@ -27,7 +27,7 @@ class FindCard extends migi.Component {
     });
   }
   render() {
-    return <div class="find_card fn-hide">
+    return <div class="find fn-hide">
       <Banner/>
       <DoubleCheck ref="doubleCheck"/>
       <PlayList/>
@@ -35,4 +35,4 @@ class FindCard extends migi.Component {
   }
 }
 
-export default FindCard;
+export default Find;

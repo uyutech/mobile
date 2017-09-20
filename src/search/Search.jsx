@@ -1,9 +1,9 @@
 /**
  * Created by army8735 on 2017/9/19.
  */
-import authorTemplate from '../../component/author/authorTemplate';
+import authorTemplate from '../component/author/authorTemplate';
 
-class SearchCard extends migi.Component {
+class Search extends migi.Component {
   constructor(...data) {
     super(...data);
   }
@@ -109,4 +109,4 @@ class SearchCard extends migi.Component {
   }
 }
 
-export default SearchCard;
+export default Search;

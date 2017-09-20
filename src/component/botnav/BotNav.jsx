@@ -2,11 +2,6 @@
  * Created by army8735 on 2017/9/17.
  */
 
-let hasOnLoad;
-window.addEventListener('load', function() {
-  hasOnLoad = true;
-});
-
 class BotNav extends migi.Component {
   constructor(...data) {
     super(...data);
@@ -19,10 +14,6 @@ class BotNav extends migi.Component {
     if(name) {
       this.setCur(name);
       let title = $(tvd.element).find('span').text();
-      window.history.pushState({
-        name,
-        title,
-      }, title, util.getUrl('/' + name));
       this.emit('change', name, title);
     }
   }

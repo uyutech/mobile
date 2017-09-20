@@ -3,20 +3,22 @@
  */
 
 import './index.html';
-import './zhuanquan.html';
-import './follow.html';
-import './find.html';
-import './my.html';
-import './search.html';
+import '../zhuanquan/zhuanquan.html';
+import '../follow/follow.html';
+import '../find/find.html';
+import '../my/my.html';
+import '../search/search.html';
 import './index.less';
 
 import TopNav from '../component/topnav/TopNav.jsx';
 import BotNav from '../component/botnav/BotNav.jsx';
-import FindCard from './find/FindCard.jsx';
-import SearchCard from './search/SearchCard.jsx';
+import Follow from '../follow/Follow.jsx';
+import ZhuanQuan from '../zhuanquan/ZhuanQuan.jsx';
+import Find from '../find/Find.jsx';
+import Search from '../search/Search.jsx';
 
-let cur = /^\/(\w+)/.exec(location.pathname)[1];
-if(cur === 'index' || cur === '') {
+let cur = (/^\/(\w+)/.exec(location.pathname) || [])[1];
+if(!cur || cur === 'index' || cur === '') {
   cur = 'follow';
 }
 
@@ -30,8 +32,10 @@ let botNav = migi.render(
 );
 
 let last;
-let findCard;
-let searchCard;
+let follow;
+let zhuanQuan;
+let find;
+let search;
 
 function alt(name, title) {
   if(title) {
@@ -41,27 +45,47 @@ function alt(name, title) {
     last.hide();
   }
   switch (name) {
-    case 'find':
-      if(!findCard) {
-        findCard = migi.render(
-          <FindCard/>,
+    case 'follow':
+      if(!follow) {
+        follow = migi.render(
+          <Follow/>,
           '#page'
         );
-        findCard.load();
+        follow.load();
       }
-      last = findCard;
+      last = follow;
+      break;
+    case 'zhuanquan':
+      if(!zhuanQuan) {
+        zhuanQuan = migi.render(
+          <ZhuanQuan/>,
+          '#page'
+        );
+        zhuanQuan.show();
+      }
+      last = zhuanQuan;
+      break;
+    case 'find':
+      if(!find) {
+        find = migi.render(
+          <Find/>,
+          '#page'
+        );
+        find.load();
+      }
+      last = find;
       break;
     case 'search':
-      if(!searchCard) {
-        searchCard = migi.render(
-          <SearchCard/>,
+      if(!search) {
+        search = migi.render(
+          <Search/>,
           '#page'
         );
         if(window.kw && window.kw.length) {
-          searchCard.load(window.kw);
+          search.load(window.kw);
         }
       }
-      last = searchCard;
+      last = search;
       break;
     default:
       last = null;
@@ -73,12 +97,12 @@ function alt(name, title) {
 }
 
 topNav.on('focus', function() {
-  if(last && last !== searchCard) {
+  if(last && last !== search) {
     let state = {
       name: 'search',
       title: '搜索'
     };
-    window.history.pushState(state, state.title, util.getUrl('/' + state.name));
+    window.history.pushState(state, state.title, '/' + state.name);
     botNav.setCur();
     alt(state.name, state.title);
   }
@@ -89,10 +113,15 @@ topNav.on('search', function(kw) {
     name: 'search',
     title: '搜索'
   };
-  window.history.pushState(state, state.title, util.getUrl('/' + state.name + '/' + kw));
-  searchCard.load(kw);
+  window.history.pushState(state, state.title, '/' + state.name + '/');
+  search.load(kw);
 });
 botNav.on('change', function(name, title) {
+  let state = {
+    name,
+    title
+  };
+  window.history.pushState(state, state.title, '/' + state.name);
   alt(name, title);
 });
 
