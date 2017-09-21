@@ -17,6 +17,12 @@ class TopNav extends migi.Component {
     let v = this.ref.input.element.value;
     this.emit('search', v);
   }
+  clickUser(e) {
+    if(!window.$CONFIG.isLogin) {
+      e.preventDefault();
+      migi.eventBus.emit('NEED_LOGIN');
+    }
+  }
   render() {
     return <div class="top-nav">
       <b class="logo"/>
@@ -24,9 +30,9 @@ class TopNav extends migi.Component {
         <input ref="input" type="text" maxlength="16" placeholder="新歌《燃尽人间色发布》" value={ window.kw || '' } onFocus={ this.focus }/>
       </form>
       <button onClick={ this.click }>确认</button>
-      <div class="user">
-        <img src={ '//zhuanquan.xyz/img/blank.png' }/>
-      </div>
+      <a href={ window.$CONFIG.isLogin ? `/user/${window.$CONFIG.userID}` : '#' } class="user" onClick={ this.clickUser }>
+        <img src={ window.$CONFIG.userPic || '//zhuanquan.xyz/img/blank.png' }/>
+      </a>
     </div>;
   }
 }
