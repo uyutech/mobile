@@ -10,7 +10,7 @@ let topNav = migi.render(
   document.body
 );
 topNav.on('search', function(kw) {
-  location.href = '/search/' + kw;
+  util.goto('/search/' + kw);
 });
 
 let mlogin;
