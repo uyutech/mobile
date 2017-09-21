@@ -10,6 +10,7 @@ module.exports = {
     works: './src/works/index.jsx',
     author: './src/author/index.jsx',
     search: './src/search/index.jsx',
+    my: './src/my/index.jsx',
   },
   output: {
     path: __dirname + '/www',
