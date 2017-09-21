@@ -161,7 +161,7 @@ class AuthorComment extends migi.Component {
         <li class="cur" rel="0">最新</li>
         <li rel="1">最热</li>
       </ul>
-      <Comment ref="comment" zanUrl="author/AddLikeBehavior" subUrl="author/GetTocomment_T_List" delUrl="author/DeleteCommentByID"/>
+      <Comment ref="comment" zanUrl="api/author/AddLikeBehavior" subUrl="api/author/GetTocomment_T_List" delUrl="api/author/DeleteCommentByID"/>
     </div>;
   }
 }

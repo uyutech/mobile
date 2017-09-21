@@ -11,3 +11,6 @@ let works = migi.render(
   <Works/>,
   '#page'
 );
+
+works.setID(window.worksID);
+works.load();
