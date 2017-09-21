@@ -91,7 +91,7 @@ class DoubleCheck extends migi.Component {
   }
   change() {
     let self = this;
-    let $lis = $(self.ref.l1.element).find('li.on');console.log($lis);
+    let $lis = $(self.ref.l1.element).find('li.on');
     let lA = [];
     $lis.each(function(i, li) {
       let index = $(li).attr('rel');

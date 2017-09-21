@@ -7,7 +7,7 @@ class Profile extends migi.Component {
     super(...data);
   }
   click(e, vd, tvd) {
-    let $tvd = $(tvd.element);console.log($tvd.hasClass('alt'))
+    let $tvd = $(tvd.element);
     if($tvd.hasClass('alt')) {
       $(vd.element).find('.card').toggleClass('alt');
     }
