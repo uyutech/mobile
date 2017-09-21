@@ -42,9 +42,10 @@ class DoubleCheck extends migi.Component {
     let $ul = $(vd.element);
     let $li = $(tvd.element);
     $li.toggleClass('on');
+    let $allLis = $ul.find('li');
     let $lis = $ul.find('.on');
-    // 都没选为全部
-    if(!$lis[0]) {
+    // 只有1个和都没选为全部
+    if($allLis.length === 1 || !$lis[0]) {
       this.tagList2 = all;
     }
     else {

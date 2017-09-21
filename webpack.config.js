@@ -8,7 +8,8 @@ module.exports = {
     // index: './src/index/index.jsx',
     find: './src/find/index.jsx',
     works: './src/works/index.jsx',
-    author: './src/author/index.jsx'
+    author: './src/author/index.jsx',
+    search: './src/search/index.jsx',
   },
   output: {
     path: __dirname + '/www',

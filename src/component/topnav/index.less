@@ -19,24 +19,45 @@
   color:#fff;
   box-shadow:0 0 5px rgba(0,0,0,0.3);
   .logo{
-    flex:1;
     width:0.7rem;
     height:0.3rem;
     background:url(logo.png) no-repeat 0 center;
     background-size:auto 0.3rem;
   }
-  .search{
-    display:block;
-    width:0.18rem;
-    height:0.18rem;
-    background:url(nav_find.png) no-repeat 0 center;
-    background-size:contain;
-    white-space:nowrap;
-    text-indent:999rem;
-    overflow:hidden;
+  .form{
+    flex:1;
+    height:0.28rem;
+    background:url(nav_find.png) no-repeat 0.1rem center;
+    background-size:0.18rem auto;
+    input{
+      display:block;
+      width:100%;
+      margin:0;
+      padding:0 0.1rem 0 0.35rem;
+      height:0.28rem;
+      border-radius:0.3rem;
+      border:none;
+      box-sizing:border-box;
+      background:rgba(255,255,255,0.3);
+      font-size:0.12rem;
+      color:#fff;
+      &::placeholder{
+        font-size:0.12rem;
+        color:#fff;
+        opacity:0.5;
+      }
+    }
+  }
+  button{
+    margin:0 0 0 0.05rem;
+    padding:0;
+    width:0.3rem;
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:0.12rem;
   }
   .user{
-    margin-left:0.2rem;
     text-align:right;
     font-size:0.12rem;
     img{

@@ -58,6 +58,13 @@ class Find extends migi.Component {
     util.postJSON('api/find/GetTag', { Skip:0, Take: 10 }, function(res) {
       if(res.success) {
         let data = res.data;
+        data.FilterlevelA = [{
+          ID: 0,
+          TagName: '音乐',
+          TagType: 0,
+          TagCount: 3957,
+          Filterlevel: "A",
+        }];
         self.ref.doubleCheck.setData(data);
       }
       self.loadPlayList();

@@ -20,9 +20,11 @@ class TopNav extends migi.Component {
   render() {
     return <div class="top-nav">
       <b class="logo"/>
-      <a href="#" class="search">搜索</a>
+      <form class="form" ref="form" onSubmit={ this.submit }>
+        <input ref="input" type="text" maxlength="16" placeholder="新歌《燃尽人间色发布》" value={ window.kw || '' } onFocus={ this.focus }/>
+      </form>
+      <button onClick={ this.click }>确认</button>
       <div class="user">
-        <span>用户名</span>
         <img src={ '//zhuanquan.xyz/img/blank.png' }/>
       </div>
     </div>;

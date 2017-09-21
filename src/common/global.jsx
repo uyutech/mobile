@@ -5,10 +5,13 @@
 import TopNav from '../component/topnav/TopNav.jsx';
 import MLogin from '../component/mlogin/MLogin.jsx';
 
-migi.render(
+let topNav = migi.render(
   <TopNav/>,
   document.body
 );
+topNav.on('search', function(kw) {
+  location.href = '/search/' + kw;
+});
 
 let mlogin;
 

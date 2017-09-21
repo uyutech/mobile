@@ -30,19 +30,21 @@ class Search extends migi.Component {
             value: item
           });
         });
-        self.clearWidth();
-        self.list = list;
-        self.autoWidth();
+        if(list.length) {
+          self.list = list;
+          self.autoWidth();
+        }
+        else {
+          self.message = '暂无搜索结果';
+        }
       }
     });
-  }
-  clearWidth() {
-    //
   }
   autoWidth() {
     $(this.element).find('li.author .list').each(function(i, o) {
       let $o = $(o);
       let $c = $o.find('.c');
+      $c.css('width', '9999rem');
       let $ul = $c.find('ul');
       $c.css('width', $ul.width() + 1);
     });
