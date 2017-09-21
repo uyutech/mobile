@@ -10,17 +10,17 @@ class TopNav extends migi.Component {
     this.emit('focus');
   }
   click() {
-    this.ref.form.element.submit();
+    this.submit();
   }
   submit(e) {
-    e.preventDefault();
+    e && e.preventDefault();
     let v = this.ref.input.element.value;
     this.emit('search', v);
   }
   render() {
     return <div class="top-nav">
       <b class="logo"/>
-      <form class="form" ref="form" onSubmit={ this.submit }>
+      <form class="form" ref="form" onSubmit={ this.submit } action="/search/">
         <input ref="input" type="text" maxlength="16" placeholder="新歌《燃尽人间色发布》" value={ window.kw || '' } onFocus={ this.focus }/>
       </form>
       <button onClick={ this.click }>确认</button>

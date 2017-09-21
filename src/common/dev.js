@@ -40,37 +40,4 @@ export default {
     }
     return load();
   },
-  getUrl: function(url) {
-    if(/^\/works\/v\d+\/\d+$/.test(url)) {
-      let id = /^\/works\/v\d+\/(\d+)$/.exec(url)[1];
-      url = 'works.html?' + id;
-    }
-    else if(/^\/author\/v\d+\/\d+$/.test(url)) {
-      let id = /^\/author\/v\d+\/(\d+)$/.exec(url)[1];
-      url = 'author.html?' + id;
-    }
-    else if(/^\/(?:follow)|(?:zhuanquan)|(?:find)|(?:my)$/.test(url)) {
-      let name = /^\/(?:follow)|(?:zhuanquan)|(?:find)|(?:my)$/.exec(url)[0];
-      url = name + '.html';
-    }
-    else if(/^\/search(\/.*)?/.test(url)) {
-      let kw = /^\/search(\/.*)?/.exec(url)[1] || '';
-      url = 'search.html?' + kw.slice(1);
-    }
-    return url;
-  }
 };
-
-let url = location.href;
-if(/\/works\.html\?\d+$/.test(url)) {
-  let id = /\/works\.html\?(\d+)$/.exec(url)[1];
-  window.workID = id;
-}
-else if(/\/author\.html\?\d+$/.test(url)) {
-  let id = /\/author\.html\?(\d+)$/.exec(url)[1];
-  window.authorID = id;
-}
-else if(/\/search\.html\?(.*)$/.test(url)) {
-  let kw = /\/search\.html\?(.*)$/.exec(url)[1];
-  window.kw = decodeURIComponent(kw);
-}

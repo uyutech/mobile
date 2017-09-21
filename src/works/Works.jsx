@@ -15,7 +15,7 @@ class Works extends migi.Component {
     super(...data);
     let self = this;
     self.on(migi.Event.DOM, function() {
-      self.setId(window.workID);
+      self.setId(window.worksID);
       let media = self.ref.media;
       let intro = self.ref.intro;
       let workComment = self.ref.workComment;
@@ -58,19 +58,19 @@ class Works extends migi.Component {
   @bind rootId = null
   @bind replayId = null
   @bind replayName
-  @bind workID
+  @bind worksID
   @bind subWorkID
-  setId(workID) {
+  setId(worksID) {
     let self = this;
-    self.workID = workID;
+    self.worksID = worksID;
     let media = self.ref.media;
     let intro = self.ref.intro;
     let workComment = self.ref.workComment;
-    workComment.workID = workID;
+    workComment.worksID = worksID;
     if(ajax) {
       ajax.abort();
     }
-    ajax = util.postJSON('api/works/GetWorkDetails', { WorksID: workID }, function(res) {
+    ajax = util.postJSON('api/works/GetWorkDetails', { WorksID: worksID }, function(res) {
       if(res.success) {
         let data = res.data;
         media.setCover(data.cover_Pic);
