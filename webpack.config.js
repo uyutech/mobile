@@ -5,7 +5,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     common: './src/common/index.js',
-    // index: './src/index/index.jsx',
+    index: './src/index/index.jsx',
     find: './src/find/index.jsx',
     works: './src/works/index.jsx',
     author: './src/author/index.jsx',
