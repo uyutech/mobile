@@ -174,7 +174,7 @@ class Audio extends migi.Component {
     }
   }
   clickDownload(e) {
-    if(window.isLogin !== 'True') {
+    if(window.$CONFIG.isLogin !== 'True') {
       e.preventDefault();
       migi.eventBus.emit('NEED_LOGIN');
     }

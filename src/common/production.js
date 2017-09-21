@@ -28,7 +28,7 @@ export default {
         success: function (data, state, xhr) {
           // console.log('ajax success: ' + url + ', ' + JSON.stringify(data));
           if(!data.success && data.code === 1000) {
-            location.href = window.LOGIN_URL;
+            location.href = window.$CONFIG.loginUrl;
             return;
           }
           success(data, state, xhr);

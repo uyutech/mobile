@@ -58,10 +58,13 @@ class Author extends migi.Component {
   setID(authorID) {
     let self = this;
     self.authorID = authorID;
+  }
+  load() {
+    let self = this;
     let nav = self.ref.nav;
     let profile = nav.ref.profile;
     let link = nav.ref.link;
-    util.postJSON('api/author/GetAuthorDetails', { AuthorID: authorID }, function (res) {
+    util.postJSON('api/author/GetAuthorDetails', { AuthorID: self.authorID }, function (res) {
       if(res.success) {
         let data = res.data;
 
@@ -88,7 +91,7 @@ class Author extends migi.Component {
       // alert(res.message || util.ERROR_MESSAGE);
     });
     let home = self.ref.home;
-    home.load(authorID);
+    home.load(self.authorID);
   }
   render() {
     return <div class="author">

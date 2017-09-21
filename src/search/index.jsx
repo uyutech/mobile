@@ -12,6 +12,6 @@ let search = migi.render(
   '#page'
 );
 
-if(window.kw && window.kw.length) {
-  search.load(window.kw);
+if(window.$CONFIG.kw && window.$CONFIG.kw.length) {
+  search.load(window.$CONFIG.kw);
 }

@@ -22,7 +22,7 @@ class NeedLogin extends migi.Component {
       <div class="c">
         <h3>您尚未登录...</h3>
         <p>{ this.message || '登录后即可进行相关操作~' }</p>
-        <a href={ window.LOGIN_URL } class="weibo">微博登录</a>
+        <a href={ window.$CONFIG.loginUrl } class="weibo">微博登录</a>
         <a href="#" class="close" onClick={ this.clickClose }/>
       </div>
     </div>;

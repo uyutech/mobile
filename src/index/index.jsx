@@ -81,8 +81,8 @@ function alt(name, title) {
           <Search/>,
           '#page'
         );
-        if(window.kw && window.kw.length) {
-          search.load(window.kw);
+        if(window.$CONFIG.kw && window.$CONFIG.kw.length) {
+          search.load(window.$CONFIG.kw);
         }
       }
       last = search;
@@ -108,7 +108,7 @@ topNav.on('focus', function() {
   }
 });
 topNav.on('search', function(kw) {
-  window.kw = kw;
+  window.$CONFIG.kw = kw;
   let state = {
     name: 'search',
     title: '搜索'

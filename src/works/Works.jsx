@@ -72,7 +72,7 @@ class Works extends migi.Component {
     if(ajax) {
       ajax.abort();
     }
-    ajax = util.postJSON('api/works/GetWorkDetails', { WorksID: worksID }, function(res) {
+    ajax = util.postJSON('api/works/GetWorkDetails', { WorksID: self.worksID }, function(res) {
       if(res.success) {
         let data = res.data;
         media.setCover(data.cover_Pic);
@@ -92,7 +92,7 @@ class Works extends migi.Component {
     this.rootId = null;
   }
   input(e, vd) {
-    if(window.isLogin !== 'True') {
+    if(window.$CONFIG.isLogin !== 'True') {
       migi.eventBus.emit('NEED_LOGIN');
       $(vd.element).blur();
     }
@@ -102,7 +102,7 @@ class Works extends migi.Component {
     }
   }
   focus(e, vd) {
-    if(window.isLogin !== 'True') {
+    if(window.$CONFIG.isLogin !== 'True') {
       migi.eventBus.emit('NEED_LOGIN');
       $(vd.element).blur();
     }

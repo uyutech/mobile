@@ -12,4 +12,5 @@ let author = migi.render(
   '#page'
 );
 
-author.setID(window.authorID);
+author.setID(window.$CONFIG.authorID);
+author.load();
