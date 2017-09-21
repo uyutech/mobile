@@ -92,7 +92,7 @@ class Works extends migi.Component {
     this.rootId = null;
   }
   input(e, vd) {
-    if(window.IS_LOGIN !== 'True') {
+    if(window.isLogin !== 'True') {
       migi.eventBus.emit('NEED_LOGIN');
       $(vd.element).blur();
     }
@@ -102,7 +102,7 @@ class Works extends migi.Component {
     }
   }
   focus(e, vd) {
-    if(window.IS_LOGIN !== 'True') {
+    if(window.isLogin !== 'True') {
       migi.eventBus.emit('NEED_LOGIN');
       $(vd.element).blur();
     }
