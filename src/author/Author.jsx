@@ -49,9 +49,9 @@ class Author extends migi.Component {
             break;
         }
       });
-      // setTimeout(function() {
-      //   tags.emit('change', '1');
-      // }, 100);
+      setTimeout(function() {
+        tags.emit('change', '2');
+      }, 100);
     });
   }
   setID(authorID) {

@@ -14,7 +14,6 @@ class Works extends migi.Component {
   constructor(...data) {
     super(...data);
     let self = this;
-    self.authorID = -1;
     self.on(migi.Event.DOM, function() {
       let doubleCheck = self.ref.doubleCheck;
       doubleCheck.on('changeL1', function(param) {

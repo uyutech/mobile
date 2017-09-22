@@ -82,8 +82,9 @@ class WorkComment extends migi.Component {
   checkMore() {
     let self = this;
     let WIN_HEIGHT = $window.height();
+    let HEIGHT = $(document.body).height();
     let bool;
-    bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
+    bool = $window.scrollTop() + HEIGHT + 30 > WIN_HEIGHT;
     if(self.showComment && !self.loading && !loadEnd && bool) {
       self.loading = true;
       ajaxMore = util.postJSON('api/works/GetToWorkMessage_List', { WorkID: self.worksID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {

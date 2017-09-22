@@ -22,6 +22,15 @@ class AuthorComment extends migi.Component {
       $window.on('scroll', function() {
         self.checkMore();
       });
+      let comment = self.ref.comment;
+      comment.on('chooseSubComment', function(rid, cid, name) {
+        self.rootId = rid;
+        self.replayId = cid;
+        self.replayName = name;
+      });
+      comment.on('closeSubComment', function() {
+        self.clickReplay();
+      });
     });
   }
   @bind showComment
@@ -82,8 +91,9 @@ class AuthorComment extends migi.Component {
   checkMore() {
     let self = this;
     let WIN_HEIGHT = $window.height();
+    let HEIGHT = $(document.body).height();
     let bool;
-    bool = $window.scrollTop() + WIN_HEIGHT + 30 > $window.height();
+    bool = $window.scrollTop() + WIN_HEIGHT + 30 > HEIGHT;
     if(self.showComment && !self.loading && !loadEnd && bool) {
       self.loading = true;
       ajaxMore = util.postJSON('api/author/GetToAuthorMessage_List', { AuthorID: self.authorID , Skip, Take, SortType, MyComment, CurrentCount }, function(res) {
@@ -151,6 +161,66 @@ class AuthorComment extends migi.Component {
     this.ref.comment.clearData();
     this.load();
   }
+  clickReplay() {
+    this.replayId = null;
+    this.replayName = null;
+    this.rootId = null;
+  }
+  input(e, vd) {
+    if(window.$CONFIG.isLogin !== 'True') {
+      migi.eventBus.emit('NEED_LOGIN');
+      $(vd.element).blur();
+    }
+    else {
+      let v = $(vd.element).val().trim();
+      this.hasContent = v.length > 0;
+    }
+  }
+  focus(e, vd) {
+    if(window.$CONFIG.isLogin !== 'True') {
+      migi.eventBus.emit('NEED_LOGIN');
+      $(vd.element).blur();
+    }
+  }
+  click(e) {
+    e.preventDefault();
+    let self = this;
+    if(self.hasContent) {
+      let $input = $(this.ref.input.element);
+      let Content = $input.val();
+      let ParentID = self.replayId !== null ? self.replayId : -1;
+      let RootID = self.rootId !== null ? self.rootId : -1;
+      self.loading = true;
+      util.postJSON('api/works/AddComment', {
+        ParentID,
+        RootID,
+        Content,
+      }, function(res) {
+        if(res.success) {
+          self.ref.comment.element.scrollIntoView();
+          $input.val('');
+          self.hasContent = false;
+          if(RootID === -1) {
+            self.ref.comment.prependData(res.data);
+            self.ref.comment.message = '';
+          }
+          else {
+            self.ref.comment.prependChild(res.data);
+          }
+        }
+        else if(res.code === 1000) {
+          migi.eventBus.emit('NEED_LOGIN');
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+        self.loading = false;
+      }, function(res) {
+        alert(res.message || util.ERROR_MESSAGE);
+        self.loading = false;
+      });
+    }
+  }
   render() {
     return <div class="comments fn-hide">
       <ul class="type2 fn-clear" onClick={ { li: this.switchType2 } }>
@@ -162,6 +232,13 @@ class AuthorComment extends migi.Component {
         <li rel="1">最热</li>
       </ul>
       <Comment ref="comment" zanUrl="api/author/AddLikeBehavior" subUrl="api/author/GetTocomment_T_List" delUrl="api/author/DeleteCommentByID"/>
+      <div class="form">
+        <div class={ 'reply' + (this.replayId ? '' : ' fn-hide') } onClick={ this.clickReplay }>{ this.replayName }</div>
+        <div class="inputs">
+          <input ref="input" type="text" placeholder="回复..." onInput={ this.input } onFocus={ this.focus }/>
+        </div>
+        <button onClick={ this.click } class={ this.hasContent && !this.loading ? '' : 'dis' }>确定</button>
+      </div>
     </div>;
   }
 }
