@@ -191,7 +191,7 @@ class AuthorComment extends migi.Component {
       let ParentID = self.replayId !== null ? self.replayId : -1;
       let RootID = self.rootId !== null ? self.rootId : -1;
       self.loading = true;
-      util.postJSON('api/works/AddComment', {
+      util.postJSON('api/author/AddComment', {
         ParentID,
         RootID,
         Content,
