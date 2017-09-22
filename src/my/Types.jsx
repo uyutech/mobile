@@ -64,6 +64,16 @@ class Types extends migi.Component {
           </div>
         </div>
       </div>
+      <div class="item favor">
+        <h4>我的收藏<b class="arrow"/></h4>
+        <div class="more">
+          <div class="c">
+            <ul>
+            </ul>
+            <button>收藏系统</button>
+          </div>
+        </div>
+      </div>
     </div>;
   }
 }

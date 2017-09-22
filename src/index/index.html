@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta charset="UTF-8"/>
-  <title>关注</title>
+  <title>发现</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <meta name="renderer" content="webkit"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -13,14 +13,23 @@
   <meta name="wap-font-scale" content="no"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
   <link rel="stylesheet" href="/common.css"/>
+  <link rel="stylesheet" href="/find.css"/>
 </head>
 <body>
-<script src="/common.js"></script>
+<div id="page"></div>
 <script>
-  var hash = location.hash || '';
-  if(/^#\/.+/.test(hash)) {
-    location.href = hash.slice(1);
-  }
+  var $CONFIG = {
+    kw: 'kw',
+    worksID: '2757',
+    authorID: '1',
+    isLogin: 'True',
+    userID: '123456',
+    userName: 'mingzi',
+    userPic: '',
+    loginUrl: 'http://circling.cc/oauth/weibo'
+  };
 </script>
+<script src="/common.js"></script>
+<script src="/find.js"></script>
 </body>
 </html>

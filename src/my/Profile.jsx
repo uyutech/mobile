@@ -16,17 +16,17 @@ class Profile extends migi.Component {
     return <div class="profile" onClick={ { '.card': this.click } }>
       <div class="bg"/>
       <div class="card">
-        <img class="pic" src="http://bbs.xiguo.net/zq/zz/02.png"/>
+        <img class="pic" src={ window.$CONFIG.userPic || '//zhuanquan.xyz/img/blank.png' }/>
         <div class="con">
-          <h3>司夏<span>个人身份</span></h3>
+          <h3>{ window.$CONFIG.userName || '--' }<span>个人身份</span></h3>
           <ul>
-            <li>Lv.5</li>
+            <li>Lv.0</li>
             <li>
-              <strong>2</strong>
+              <strong>0</strong>
               <span>感兴趣</span>
             </li>
             <li>
-              <strong>6</strong>
+              <strong>0</strong>
               <span>喜欢我</span>
             </li>
           </ul>

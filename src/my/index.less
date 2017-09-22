@@ -128,6 +128,17 @@
     > .item{
       position:relative;
       padding-left:0.5rem;
+      &:before{
+        position:absolute;
+        left:0;
+        top:0;
+        display:block;
+        width:0.5rem;
+        height:0.5rem;
+        background:url(finance.png) no-repeat center;
+        background-size:0.25rem auto;
+        content:' ';
+      }
       h4{
         position:relative;
         font-size:0.14rem;
@@ -183,17 +194,6 @@
       }
     }
     > .finance{
-      &:before{
-        position:absolute;
-        left:0.12rem;
-        top:0;
-        display:block;
-        width:0.24rem;
-        height:0.5rem;
-        background:url(finance.png) no-repeat center;
-        background-size:contain;
-        content:' ';
-      }
       > .more{
         .c{
           ul{
@@ -239,15 +239,7 @@
     }
     > .success{
       &:before{
-        position:absolute;
-        left:0.12rem;
-        top:0;
-        display:block;
-        width:0.24rem;
-        height:0.5rem;
-        background:url(success.png) no-repeat center;
-        background-size:contain;
-        content:' ';
+        background-image:url(success.png);
       }
       > .more{
         .c{
@@ -281,15 +273,12 @@
     }
     > .follow{
       &:before{
-        position:absolute;
-        left:0.12rem;
-        top:0;
-        display:block;
-        width:0.24rem;
-        height:0.5rem;
-        background:url(follow.png) no-repeat center;
-        background-size:contain;
-        content:' ';
+        background-image:url(follow.png);
+      }
+    }
+    > .favor{
+      &:before{
+        background-image:url(favor.png);
       }
     }
   }
