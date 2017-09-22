@@ -195,6 +195,7 @@ class AuthorComment extends migi.Component {
         ParentID,
         RootID,
         Content,
+        AuthorCommentID: self.authorID,
       }, function(res) {
         if(res.success) {
           self.ref.comment.element.scrollIntoView();
