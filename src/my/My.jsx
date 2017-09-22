@@ -18,7 +18,6 @@ class My extends migi.Component {
   render() {
     return <div class="my">
       <Profile/>
-      <p class="sign">签名</p>
       <Types/>
       <a href="#" class={ 'logout' + (window.$CONFIG.isLogin ? '' : ' fn-hide') } onClick={ this.clickOut }>退出登录</a>
     </div>;

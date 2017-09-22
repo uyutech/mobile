@@ -18,13 +18,14 @@
   var $CONFIG = {
     kw: 'kw',
     worksID: '2757',
-    authorID: '1',
+    authorID: '2017000000000346',
     isLogin: 'True',
     userID: '123456',
     userName: 'mingzi',
     userPic: '',
-    loginUrl: 'http://circling.cc/oauth/weibo'
+    loginUrl: 'https://api.weibo.com/oauth2/authorize?client_id=1987340303&redirect_uri=http://test.circling.cc/api/weibo/oauth'
   };
+  $CONFIG.authorID = /\d+$/.exec(location.pathname)[0];
 </script>
 <script src="/common.js"></script>
 <script src="/author.js"></script>

@@ -20,40 +20,6 @@ class Types extends migi.Component {
   }
   render() {
     return <div class="types" onClick={ { '.item>h4': this.click } }>
-      <div class="item finance">
-        <h4>我的财产<b class="arrow"/></h4>
-        <div class="more">
-          <div class="c">
-            <ul class="fn-clear">
-              <li>
-                <div class="flower"><span>鲜花</span></div>
-                <strong>--</strong>
-              </li>
-              <li>
-                <div class="gift"><span>礼物</span></div>
-                <strong>--</strong>
-              </li>
-              <li>
-                <div class="coin"><span>圈币</span></div>
-                <strong>--</strong>
-              </li>
-            </ul>
-            <button>充值</button>
-          </div>
-        </div>
-      </div>
-      <div class="item success">
-        <h4>我的成就<b class="arrow"/></h4>
-        <div class="more">
-          <div class="c">
-            <ul>
-              <li>成就名称</li>
-              <li>成就名称</li>
-            </ul>
-            <button>成就系统</button>
-          </div>
-        </div>
-      </div>
       <div class="item follow">
         <h4>我的关注<b class="arrow"/></h4>
         <div class="more">

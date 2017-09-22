@@ -25,9 +25,9 @@ class TopNav extends migi.Component {
   }
   render() {
     return <div class="top-nav">
-      <b class="logo"/>
+      <a href="/" class="logo"/>
       <form class="form" ref="form" onSubmit={ this.submit } action="/search/">
-        <input ref="input" type="text" maxlength="16" placeholder="新歌《燃尽人间色发布》" value={ window.kw || '' } onFocus={ this.focus }/>
+        <input ref="input" type="text" maxlength="16" placeholder="新歌《燃尽人间色发布》" value={ window.$CONFIG.kw || '' } onFocus={ this.focus }/>
       </form>
       <button onClick={ this.click }>确认</button>
       <a href="/my" class="user" onClick={ this.clickUser }>

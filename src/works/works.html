@@ -17,7 +17,7 @@
 <script>
   var $CONFIG = {
     kw: 'kw',
-    worksID: '2757',
+    worksID: '2015000000000014',
     authorID: '1',
     isLogin: 'True',
     userID: '123456',
@@ -25,6 +25,7 @@
     userPic: '',
     loginUrl: 'http://circling.cc/oauth/weibo'
   };
+  $CONFIG.worksID = /\d+$/.exec(location.pathname)[0];
 </script>
 <script src="/common.js"></script>
 <script src="/works.js"></script>
