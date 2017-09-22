@@ -11,13 +11,12 @@ class Author extends migi.Component {
   constructor(...data) {
     super(...data);
     let self = this;
-    self.authorID = -1;
     self.on(migi.Event.DOM, function() {
       let nav = self.ref.nav;
       let tags = nav.ref.tags;
       let home = self.ref.home;
-      let works = self.ref.works;
-      let authorComment = self.ref.authorComment;
+      let works;
+      let authorComment;
       tags.on('change', function(i) {
         home && home.hide();
         works && works.hide();
@@ -43,7 +42,7 @@ class Author extends migi.Component {
                 <AuthorComment/>,
                 self.element
               );
-              authorComment.authorID = authorID;
+              authorComment.authorID = self.authorID;
               authorComment.load();
             }
             authorComment.show();
