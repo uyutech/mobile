@@ -1,6 +1,7 @@
 /**
  * Created by army8735 on 2017/9/19.
  */
+
 import authorTemplate from '../component/author/authorTemplate';
 
 class Search extends migi.Component {
@@ -75,16 +76,18 @@ class Search extends migi.Component {
               });
               let authorType = Object.keys(hash);
               return <li class="author">
-                <img class="pic" src={ value.Head_url || '//zhuanquan.xyz/img/blank.png' }/>
+                <a href={ `/author/${value.AuthorID}` } class="pic" >
+                  <img src={ value.Head_url || '//zhuanquan.xyz/img/blank.png' }/>
+                </a>
                 <div class="info">
-                  <div class="name">
+                  <a href={ `/author/${value.AuthorID}` } class="name">
                     <h4 dangerouslySetInnerHTML={ name }/>
                     {
                       authorType.map(function(item) {
                         return <span class={ `cp-author-type-${item}` }/>;
                       })
                     }
-                  </div>
+                  </a>
                   <p>粉丝：{ value.FansNumber }</p>
                 </div>
                 <div class="works">
