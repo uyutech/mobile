@@ -8,7 +8,7 @@ class HotAuthor extends migi.Component {
   }
   autoWidth() {
     let $list = $(this.ref.list.element);
-    let $c = this.$list.find('.c');
+    let $c = $list.find('.c');
     $c.css('width', '9999rem');
     let $ul = $c.find('ul');
     $c.css('width', $ul.width() + 1);
