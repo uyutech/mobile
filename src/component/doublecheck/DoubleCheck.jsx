@@ -139,7 +139,7 @@ class DoubleCheck extends migi.Component {
             {
               this.tagList.map(function(item, i) {
                 let type = authorTemplate.code2Data[item.TagName];
-                return <li rel={ i } tagType={ item.TagType } tagID={ item.ID }><a href="#"><span>{ type ? type.display : item.TagName }</span></a></li>;
+                return <li rel={ i } tagType={ item.TagType } tagID={ item.ID }><a href="#"><span>{ type ? type.name : item.TagName }</span></a></li>;
               })
             }
           </ul>

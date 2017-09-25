@@ -71,13 +71,13 @@ class Search extends migi.Component {
               }
               let hash = {};
               value.Authortype.forEach(function(item) {
-                let css = authorTemplate(item.AuthorTypeID).css;
+                let css = authorTemplate.code2Data[item.AuthorTypeID].css;
                 hash[css] = true;
               });
               let authorType = Object.keys(hash);
               return <li class="author">
                 <a href={ `/author/${value.AuthorID}` } class="pic" >
-                  <img src={ value.Head_url || '//zhuanquan.xyz/img/blank.png' }/>
+                  <img src={ value.Head_url || '//zhuanquan.xyz/img/f59284bd66f39bcfc70ef62eee10e186.png' }/>
                 </a>
                 <div class="info">
                   <a href={ `/author/${value.AuthorID}` } class="name">
