@@ -79,13 +79,14 @@ class Works extends migi.Component {
         media.setCover(data.cover_Pic);
         media.setWorks(data.Works_Items);
         media.popular = data.Popular;
-        intro.tags = data.ReturnTagData || [];
+        // intro.tags = data.ReturnTagData || [];
         $(self.ref.form.element).removeClass('fn-hide');
       }
       else {
         alert(res.message);
       }
     });
+    self.ref.workComment.load();
   }
   clickReplay() {
     this.replayId = null;
@@ -153,7 +154,6 @@ class Works extends migi.Component {
   render() {
     return <div class="works">
       <Media ref="media"/>
-      <Intro ref="intro"/>
       <WorkComment ref="workComment"/>
       <div class="form fn-hide" ref="form">
         <div class="c">

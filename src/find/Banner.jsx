@@ -8,7 +8,7 @@ class Banner extends migi.Component {
   }
   render() {
     return <div class="banner">
-      <a href="/works/2015000000000001"><img src="http://zhuanquan.xyz/pic/47d15679d3e6883acacdbcd85f2ebe85.jpg"/></a>
+      <a href="/works/2015000000000001"><img src="http://zhuanquan.xyz/pic/e34cc1fb3102e63b507293f6e5a20515.jpg-750_"/></a>
     </div>;
   }
 }
