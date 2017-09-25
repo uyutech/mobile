@@ -16,12 +16,6 @@ class HotWork extends migi.Component {
     let $ul = $c.find('ul');
     $c.css('width', $ul.width() + 1);
   }
-  click(e, vd, tvd) {
-    let worksID = tvd.props.worksID;
-    if(worksID) {
-      util.goto('/works/' + worksID);
-    }
-  }
   render() {
     let authorId = this.props.authorId;
     return <div class="cp-hotwork">
@@ -79,7 +73,7 @@ class HotWork extends migi.Component {
                     //     workAuthors = authors.join('&');
                     //   }
                     // }
-                    return <li worksID={ item.WorksID }>
+                    return <li>
                       <a href={ '/works/' + item.WorksID } class="pic">
                         <img src={ util.img150_150(item.cover_Pic) || '//zhuanquan.xyz/img/blank.png' }/>
                         <div class="num"><b class="audio"/>{ item.Popular }</div>
