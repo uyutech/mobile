@@ -20,7 +20,7 @@ class Profile extends migi.Component {
     v = v || [];
     let hash = {};
     v.forEach(function(item) {
-      let css = authorTemplate(item.AuthorTypeID).css;
+      let css = authorTemplate.code2Data[item.AuthorTypeID].css;
       hash[css] = true;
     });
     this.authorType = Object.keys(hash);

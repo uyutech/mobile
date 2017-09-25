@@ -31,7 +31,7 @@ class HotAuthor extends migi.Component {
                 {
                   this.dataList.map(function(item) {
                     let types = item.WorksType || [];
-                    return <li authorID={ item.AuthorID }>
+                    return <li>
                       <a href={ `/author/${item.AuthorID}` } class="pic">
                         <img src={ item.Head_url || '//zhuanquan.xyz/img/f59284bd66f39bcfc70ef62eee10e186.png' }/>
                         {
