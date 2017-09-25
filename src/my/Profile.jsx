@@ -6,26 +6,29 @@ class Profile extends migi.Component {
   constructor(...data) {
     super(...data);
   }
-  click(e, vd, tvd) {
-    let $tvd = $(tvd.element);
-    if($tvd.hasClass('alt')) {
-      // $(vd.element).find('.card').toggleClass('alt');
-    }
-  }
+  @bind userName = window.$CONFIG.userName
   clickEdit(e) {
     e.preventDefault();
+    let self = this;
     let name = window.prompt('请输入想要修改的昵称', window.$CONFIG.userName).trim();
     if(name !== window.$CONFIG.userName) {
-      alert(name);
+      util.postJSON('api/users/UpdateNickName', { NickName: name }, function(res) {
+        if(res.success) {
+          self.userName = name;
+        }
+        else {
+          alert(res.message || util.ERROR_MESSAGE);
+        }
+      });
     }
   }
   render() {
-    return <div class="profile" onClick={ { '.card': this.click } }>
+    return <div class="profile">
       <div class="bg"/>
       <div class="card">
-        <img class="pic" src={ window.$CONFIG.userPic || '//zhuanquan.xyz/img/blank.png' }/>
+        <img class="pic" src={ window.$CONFIG.userPic || '//zhuanquan.xyz/img/f59284bd66f39bcfc70ef62eee10e186.png' }/>
         <div class="con">
-          <h3>{ window.$CONFIG.userName || '--' }<a href="#" class="edit" onClick={ this.clickEdit }>编辑</a></h3>
+          <h3>{ this.userName }<a href="#" class="edit" onClick={ this.clickEdit }>编辑</a></h3>
         </div>
       </div>
     </div>;
