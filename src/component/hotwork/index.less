@@ -34,9 +34,16 @@
       transition:none;
     }
     .c{
-      width:9999rem;
-      height:1rem;
+      //width:9999rem;
+      //height:1rem;
       overflow:hidden;
+      .empty{
+        width:0.75rem;
+        height:0.75rem;
+        background:url(works_bg_no.png) no-repeat center;
+        background-size:contain;
+        border-radius:0.05rem;
+      }
       ul{
         display:inline-block;
         li{
@@ -50,19 +57,15 @@
             position:relative;
             width:0.75rem;
             height:0.75rem;
-            background-size:cover!important;
+            background:url(works_bg.png) no-repeat center;
+            background-size:contain;
             border-radius:0.05rem;
             color:#fff;
             overflow:hidden;
-            &:before{
-              position:absolute;
-              left:0;
-              top:0;
+            img{
+              display:block;
               width:100%;
               height:100%;
-              background-color:rgba(0,0,0,0.3)!important;
-              content:' ';
-              border-radius:0.05rem;
             }
             .num{
               position:absolute;

@@ -24,7 +24,9 @@ class PlayList extends migi.Component {
   }
   genItem(item) {
     return <li>
-      <div worksId={ item.WorksID || item.WorkID } class="pic" style={ `background:url(${item.cover_Pic || item.CoverPic || '//zhuanquan.xyz/img/blank.png'})` }/>
+      <div worksId={ item.WorksID || item.WorkID } class="pic">
+        <img src={ item.cover_Pic || '//zhuanquan.xyz/img/blank.png' }/>
+      </div>
       <div class="txt" worksId={ item.WorksID || item.WorkID }>
         <div class="name">{ item.Title }</div>
         <p class="intro">{ item.sub_Title }</p>
