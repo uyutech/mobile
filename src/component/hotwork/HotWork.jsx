@@ -9,7 +9,7 @@ class HotWork extends migi.Component {
     super(...data);
   }
   @bind dataList = []
-  autoWidth() {console.log(1);
+  autoWidth() {
     let $list = $(this.ref.list.element);
     let $c = $list.find('.c');
     $c.css('width', '9999rem');
@@ -30,7 +30,7 @@ class HotWork extends migi.Component {
         <div class="c">
           {
             this.dataList && this.dataList.length
-              ? <ul onClick={ { li: this.click } }>
+              ? <ul>
                 {
                   this.dataList.map(function(item) {
                     // let myAuthor;
@@ -80,12 +80,12 @@ class HotWork extends migi.Component {
                     //   }
                     // }
                     return <li worksID={ item.WorksID }>
-                      <div class="pic">
-                        <img src={ item.cover_Pic || '//zhuanquan.xyz/img/blank.png' }/>
+                      <a href={ '/works/' + item.WorksID } class="pic">
+                        <img src={ (item.cover_Pic) || '//zhuanquan.xyz/img/blank.png' }/>
                         <div class="num"><b class="audio"/>{ item.Popular }</div>
                         <div class="ath">{ '' }</div>
-                      </div>
-                      <p class="txt">{ item.Title }</p>
+                      </a>
+                      <a href={ '/works/' + item.WorksID } class="txt">{ item.Title }</a>
                     </li>;
                   })
                 }

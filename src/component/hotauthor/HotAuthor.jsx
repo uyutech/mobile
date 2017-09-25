@@ -6,6 +6,7 @@ class HotAuthor extends migi.Component {
   constructor(...data) {
     super(...data);
   }
+  @bind dataList = []
   autoWidth() {
     let $list = $(this.ref.list.element);
     let $c = $list.find('.c');
@@ -13,7 +14,6 @@ class HotAuthor extends migi.Component {
     let $ul = $c.find('ul');
     $c.css('width', $ul.width() + 1);
   }
-  @bind dataList = []
   click(e, vd, tvd) {
     let authorID = tvd.props.authorID;
     if(authorID) {
@@ -27,20 +27,20 @@ class HotAuthor extends migi.Component {
         <div class="c">
           {
             this.dataList && this.dataList.length
-              ? <ul onClick={ { li: this.click } }>
+              ? <ul>
                 {
                   this.dataList.map(function(item) {
                     let types = item.WorksType || [];
                     return <li authorID={ item.AuthorID }>
-                      <div class="pic">
+                      <a href={ `/author/${item.AuthorID}` } class="pic">
                         <img src={ item.Head_url || '//zhuanquan.xyz/img/blank.png' }/>
                         {
                           types.slice(0, 2).map(function(item) {
                             return <b class={ `cp-author_type${item}` }/>;
                           })
                         }
-                      </div>
-                      <div class="txt">{ item.AuthorName }</div>
+                      </a>
+                      <a href={ `/author/${item.AuthorID}` } class="txt">{ item.AuthorName }</a>
                       <div class="info">合作{ item.CooperationTimes }次</div>
                     </li>;
                   })

@@ -24,11 +24,11 @@ class PlayList extends migi.Component {
   }
   genItem(item) {
     return <li>
-      <div worksId={ item.WorksID || item.WorkID } class="pic">
+      <a href={ `/works/${item.WorksID}` } class="pic">
         <img src={ item.cover_Pic || '//zhuanquan.xyz/img/blank.png' }/>
-      </div>
+      </a>
       <div class="txt" worksId={ item.WorksID || item.WorkID }>
-        <div class="name">{ item.Title }</div>
+        <a href={ `/works/${item.WorksID}` } class="name">{ item.Title }</a>
         <p class="intro">{ item.sub_Title }</p>
       </div>
     </li>;
@@ -44,7 +44,7 @@ class PlayList extends migi.Component {
   }
   render() {
     return <div class="cp-playlist">
-      <ul class="list" ref="list" onClick={ { '.pic': this.click, '.txt': this.click } }/>
+      <ul class="list" ref="list"/>
     </div>;
   }
 }
