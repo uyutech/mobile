@@ -18,7 +18,7 @@ class TopNav extends migi.Component {
     this.emit('search', v);
   }
   clickUser(e) {
-    if(!window.$CONFIG.isLogin) {
+    if(window.$CONFIG.isLogin !== 'True') {
       e.preventDefault();
       migi.eventBus.emit('NEED_LOGIN');
     }
