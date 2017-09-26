@@ -31,7 +31,7 @@ class TopNav extends migi.Component {
       </form>
       <button onClick={ this.click }>确认</button>
       <a href="/my" class="user" onClick={ this.clickUser }>
-        <img src={ window.$CONFIG.userPic || '//zhuanquan.xyz/img/f59284bd66f39bcfc70ef62eee10e186.png' }/>
+        <img src={ window.$CONFIG.userPic || '//zhuanquan.xin/img/f59284bd66f39bcfc70ef62eee10e186.png' }/>
       </a>
     </div>;
   }

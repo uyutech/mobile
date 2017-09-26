@@ -75,7 +75,7 @@ class HotWork extends migi.Component {
                     // }
                     return <li>
                       <a href={ '/works/' + item.WorksID } class="pic">
-                        <img src={ util.img150_150(item.cover_Pic) || '//zhuanquan.xyz/img/blank.png' }/>
+                        <img src={ util.img150_150(item.cover_Pic) || '//zhuanquan.xin/img/blank.png' }/>
                         <div class="num"><b class="audio"/>{ item.Popular }</div>
                         <div class="ath">{ '' }</div>
                       </a>
