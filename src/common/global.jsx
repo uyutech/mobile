@@ -3,6 +3,7 @@
  */
 
 import TopNav from '../component/topnav/TopNav.jsx';
+import BotNav from '../component/botnav/BotNav.jsx';
 import MLogin from '../component/mlogin/MLogin.jsx';
 
 let topNav = migi.render(
@@ -12,6 +13,10 @@ let topNav = migi.render(
 topNav.on('search', function(kw) {
   util.goto('/search/' + kw);
 });
+migi.render(
+  <BotNav/>,
+  document.body
+);
 
 let mlogin;
 
