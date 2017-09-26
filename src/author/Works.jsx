@@ -85,7 +85,7 @@ class Works extends migi.Component {
   render() {
     return <div class="works fn-hide">
       <DoubleCheck ref="doubleCheck"/>
-      <div class="bar">
+      <div class="bar fn-hide">
         <ul class="btn fn-clear">
           <li class="all">播放全部</li>
           <li class="audio"></li>
