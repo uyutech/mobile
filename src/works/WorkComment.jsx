@@ -4,7 +4,7 @@
 
 import Comment from '../component/comment/Comment.jsx';
 
-let Skip = -1;
+let Skip = 0;
 let Take = 10;
 let SortType = 0;
 let MyComment = 0;
@@ -40,7 +40,7 @@ class WorkComment extends migi.Component {
     let self = this;
     $(self.element).addClass('fn-hide');
     self.showComment = false;
-    Skip = -1;
+    Skip = 0;
   }
   load() {
     let self = this;
