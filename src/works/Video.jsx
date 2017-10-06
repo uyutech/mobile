@@ -2,8 +2,6 @@
  * Created by army8735 on 2017/9/7.
  */
 
-let de = document.documentElement;
-
 class Video extends migi.Component {
   constructor(...data) {
     super(...data);
@@ -144,21 +142,24 @@ class Video extends migi.Component {
     }
   }
   clickShare() {
-    migi.eventBus.emit('share');
+    migi.eventBus.emit('SHARE', location.href);
   }
   clickScreen() {
     let video = this.ref.video.element;
-    if(de.requestFullscreen) {
+    if(video.requestFullscreen) {
       video.requestFullscreen();
     }
-    else if(de.mozRequestFullscreen) {
+    else if(video.mozRequestFullscreen) {
       video.mozRequestFullscreen();
     }
-    else if(de.webkitRequestFullscreen) {
+    else if(video.webkitRequestFullscreen) {
       video.webkitRequestFullscreen();
     }
-    else if(de.msRequestFullscreen) {
+    else if(video.msRequestFullscreen) {
       video.msRequestFullscreen();
+    }
+    else if(video.webkitEnterFullScreen) {
+      video.webkitEnterFullScreen();
     }
   }
   clickPoster() {
