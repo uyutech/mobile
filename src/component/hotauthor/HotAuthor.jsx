@@ -41,7 +41,7 @@ class HotAuthor extends migi.Component {
                         }
                       </a>
                       <a href={ `/author/${item.AuthorID}` } class="txt">{ item.AuthorName }</a>
-                      <div class="info">合作{ item.CooperationTimes }次</div>
+                      <div class="info">{ item.CooperationTimes ? `合作${item.CooperationTimes}次` : '' }</div>
                     </li>;
                   })
                 }

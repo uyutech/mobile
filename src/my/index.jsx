@@ -11,3 +11,4 @@ let my = migi.render(
   <My/>,
   '#page'
 );
+my.load();
